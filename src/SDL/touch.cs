@@ -43,10 +43,10 @@ namespace SDL2
 
 		public struct Finger
 		{
-			public long id; // FingerID
-			public float x;
-			public float y;
-			public float pressure;
+			public long Id; // FingerID
+			public float X;
+			public float Y;
+			public float Pressure;
 		}
 
 		/* Only available in SDL 2.0.10 or higher. */

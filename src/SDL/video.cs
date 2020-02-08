@@ -194,11 +194,11 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct DisplayMode
 		{
-			public uint format;
-			public int w;
-			public int h;
-			public int refresh_rate;
-			public IntPtr driverdata; // void*
+			public uint Format;
+			public int W;
+			public int H;
+			public int RefreshRate;
+			public IntPtr DriverData; // void*
 		}
 
 		/* win refers to an Window*, area to a cosnt Point*, data to a void* */

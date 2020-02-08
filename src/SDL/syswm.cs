@@ -59,107 +59,107 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_windows_wminfo
 		{
-			public IntPtr window; // Refers to an HWND
-			public IntPtr hdc; // Refers to an HDC
+			public IntPtr Window; // Refers to an HWND
+			public IntPtr Hdc; // Refers to an HDC
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_winrt_wminfo
 		{
-			public IntPtr window; // Refers to an IInspectable*
+			public IntPtr Window; // Refers to an IInspectable*
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_x11_wminfo
 		{
-			public IntPtr display; // Refers to a Display*
-			public IntPtr window; // Refers to a Window (XID, use ToInt64!)
+			public IntPtr Display; // Refers to a Display*
+			public IntPtr Window; // Refers to a Window (XID, use ToInt64!)
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_directfb_wminfo
 		{
-			public IntPtr dfb; // Refers to an IDirectFB*
-			public IntPtr window; // Refers to an IDirectFBWindow*
-			public IntPtr surface; // Refers to an IDirectFBSurface*
+			public IntPtr Dfb; // Refers to an IDirectFB*
+			public IntPtr Window; // Refers to an IDirectFBWindow*
+			public IntPtr Surface; // Refers to an IDirectFBSurface*
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_cocoa_wminfo
 		{
-			public IntPtr window; // Refers to an NSWindow*
+			public IntPtr Window; // Refers to an NSWindow*
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_uikit_wminfo
 		{
-			public IntPtr window; // Refers to a UIWindow*
-			public uint framebuffer;
-			public uint colorbuffer;
-			public uint resolveFramebuffer;
+			public IntPtr Window; // Refers to a UIWindow*
+			public uint Framebuffer;
+			public uint Colorbuffer;
+			public uint ResolveFramebuffer;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_wayland_wminfo
 		{
-			public IntPtr display; // Refers to a wl_display*
-			public IntPtr surface; // Refers to a wl_surface*
-			public IntPtr shell_surface; // Refers to a wl_shell_surface*
+			public IntPtr Display; // Refers to a wl_display*
+			public IntPtr Surface; // Refers to a wl_surface*
+			public IntPtr ShellSurface; // Refers to a wl_shell_surface*
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_mir_wminfo
 		{
-			public IntPtr connection; // Refers to a MirConnection*
-			public IntPtr surface; // Refers to a MirSurface*
+			public IntPtr Connection; // Refers to a MirConnection*
+			public IntPtr Surface; // Refers to a MirSurface*
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_android_wminfo
 		{
-			public IntPtr window; // Refers to an ANativeWindow
-			public IntPtr surface; // Refers to an EGLSurface
+			public IntPtr Window; // Refers to an ANativeWindow
+			public IntPtr Surface; // Refers to an EGLSurface
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_vivante_wminfo
 		{
-			public IntPtr display; // Refers to an EGLNativeDisplayType
-			public IntPtr window; // Refers to an EGLNativeWindowType
+			public IntPtr Display; // Refers to an EGLNativeDisplayType
+			public IntPtr Window; // Refers to an EGLNativeWindowType
 		}
 
 		[StructLayout(LayoutKind.Explicit)]
 		public struct INTERNAL_SysWMDriverUnion
 		{
 			[FieldOffset(0)]
-			public INTERNAL_windows_wminfo win;
+			public INTERNAL_windows_wminfo Win;
 			[FieldOffset(0)]
-			public INTERNAL_winrt_wminfo winrt;
+			public INTERNAL_winrt_wminfo Winrt;
 			[FieldOffset(0)]
-			public INTERNAL_x11_wminfo x11;
+			public INTERNAL_x11_wminfo X11;
 			[FieldOffset(0)]
-			public INTERNAL_directfb_wminfo dfb;
+			public INTERNAL_directfb_wminfo Dfb;
 			[FieldOffset(0)]
-			public INTERNAL_cocoa_wminfo cocoa;
+			public INTERNAL_cocoa_wminfo Cocoa;
 			[FieldOffset(0)]
-			public INTERNAL_uikit_wminfo uikit;
+			public INTERNAL_uikit_wminfo Uikit;
 			[FieldOffset(0)]
-			public INTERNAL_wayland_wminfo wl;
+			public INTERNAL_wayland_wminfo Wl;
 			[FieldOffset(0)]
-			public INTERNAL_mir_wminfo mir;
+			public INTERNAL_mir_wminfo Mir;
 			[FieldOffset(0)]
-			public INTERNAL_android_wminfo android;
+			public INTERNAL_android_wminfo Android;
 			[FieldOffset(0)]
-			public INTERNAL_vivante_wminfo vivante;
+			public INTERNAL_vivante_wminfo Vivante;
 			// private int dummy;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct SysWMinfo
 		{
-			public Version version;
-			public SysWmType subsystem;
-			public INTERNAL_SysWMDriverUnion info;
+			public Version Version;
+			public SysWmType Subsystem;
+			public INTERNAL_SysWMDriverUnion Info;
 		}
 
 		/* window refers to an Window* */
