@@ -220,7 +220,7 @@ namespace SDL2
 			public EventType Type;
 			public UInt32 Timestamp;
 			public UInt32 WindowID;
-			public fixed byte text[TEXTEDITINGEVENT_TEXT_SIZE];
+			public fixed byte Text[TEXTEDITINGEVENT_TEXT_SIZE];
 			public Int32 Start;
 			public Int32 Length;
 		}
@@ -231,7 +231,7 @@ namespace SDL2
 			public EventType Type;
 			public UInt32 Timestamp;
 			public UInt32 WindowID;
-			public fixed byte text[TEXTINPUTEVENT_TEXT_SIZE];
+			public fixed byte Text[TEXTINPUTEVENT_TEXT_SIZE];
 		}
 
 // Ignore private members used for padding in this struct
@@ -504,7 +504,7 @@ namespace SDL2
 			public EventType Type;
 			public UInt32 Timestamp;
 			public Int32 Which;
-			public fixed float data[6];
+			public fixed float Data[6];
 		}
 
 		/* The "quit requested" event */

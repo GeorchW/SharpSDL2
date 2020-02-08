@@ -79,7 +79,7 @@ namespace SDL2
 		}
 
 		[Flags]
-		public enum GLcontext
+		public enum GlContext
 		{
 			DebugFlag				= 0x0001,
 			ForwardCompatibleFlag	= 0x0002,
