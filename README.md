@@ -34,4 +34,6 @@ When running C# applications under the Visual Studio debugger, native code that
 names threads with the 0x406D1388 exception will silently exit. To prevent this
 exception from being thrown by SDL, add this line before your SDL_Init call:
 
-SDL.SDL_SetHint(SDL.SDL_HINT_WINDOWS_DISABLE_THREAD_NAMING, "1");
+```csharp
+SDL.SetHint(SDL.HINT_WINDOWS_DISABLE_THREAD_NAMING, "1");
+```
