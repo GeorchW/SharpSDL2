@@ -130,9 +130,9 @@ namespace SDL2
 
 		public static void SDL_MIXER_VERSION(out Version X)
 		{
-			X.major = SDL_MIXER_MAJOR_VERSION;
-			X.minor = SDL_MIXER_MINOR_VERSION;
-			X.patch = SDL_MIXER_PATCHLEVEL;
+			X.Major = SDL_MIXER_MAJOR_VERSION;
+			X.Minor = SDL_MIXER_MINOR_VERSION;
+			X.Patch = SDL_MIXER_PATCHLEVEL;
 		}
 
 		[DllImport(nativeLibName, EntryPoint = "MIX_Linked_Version", CallingConvention = CallingConvention.Cdecl)]

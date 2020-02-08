@@ -58,9 +58,9 @@ namespace SDL2.TTF
 
         public static void TTF_VERSION(out Version X)
         {
-            X.major = TTF_MAJOR_VERSION;
-            X.minor = TTF_MINOR_VERSION;
-            X.patch = TTF_PATCHLEVEL;
+            X.Major = TTF_MAJOR_VERSION;
+            X.Minor = TTF_MINOR_VERSION;
+            X.Patch = TTF_PATCHLEVEL;
         }
 
         [DllImport(nativeLibName, EntryPoint = "TTF_LinkedVersion", CallingConvention = CallingConvention.Cdecl)]

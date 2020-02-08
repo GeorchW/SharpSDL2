@@ -37,9 +37,9 @@ namespace SDL2
     [StructLayout(LayoutKind.Sequential)]
     public struct Version
     {
-        public byte major;
-        public byte minor;
-        public byte patch;
+        public byte Major;
+        public byte Minor;
+        public byte Patch;
     }
     public static partial class SDL
     {
@@ -63,9 +63,9 @@ namespace SDL2
 
         public static void VERSION(out Version x)
         {
-            x.major = MAJOR_VERSION;
-            x.minor = MINOR_VERSION;
-            x.patch = PATCHLEVEL;
+            x.Major = MAJOR_VERSION;
+            x.Minor = MINOR_VERSION;
+            x.Patch = PATCHLEVEL;
         }
 
         public static int VERSIONNUM(int X, int Y, int Z)

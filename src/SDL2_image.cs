@@ -63,9 +63,9 @@ namespace SDL2
 
 		public static void SDL_IMAGE_VERSION(out Version X)
 		{
-			X.major = SDL_IMAGE_MAJOR_VERSION;
-			X.minor = SDL_IMAGE_MINOR_VERSION;
-			X.patch = SDL_IMAGE_PATCHLEVEL;
+			X.Major = SDL_IMAGE_MAJOR_VERSION;
+			X.Minor = SDL_IMAGE_MINOR_VERSION;
+			X.Patch = SDL_IMAGE_PATCHLEVEL;
 		}
 
 		[DllImport(nativeLibName, EntryPoint = "IMG_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
