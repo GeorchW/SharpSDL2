@@ -126,14 +126,14 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct AudioSpec
 		{
-			public int freq;
-			public ushort format; // AudioFormat
-			public byte channels;
-			public byte silence;
-			public ushort samples;
-			public uint size;
-			public AudioCallback callback;
-			public IntPtr userdata; // void*
+			public int Frequency;
+			public ushort Format; // AudioFormat
+			public byte Channels;
+			public byte Silence;
+			public ushort Samples;
+			public uint Size;
+			public AudioCallback Callback;
+			public IntPtr Userdata; // void*
 		}
 
 		/* userdata refers to a void*, stream to a Uint8 */
