@@ -128,7 +128,7 @@ namespace SDL2
 			IntPtr b // void*
 		);
 
-		public static void SDL_MIXER_VERSION(out SDL.SDL_version X)
+		public static void SDL_MIXER_VERSION(out Version X)
 		{
 			X.major = SDL_MIXER_MAJOR_VERSION;
 			X.minor = SDL_MIXER_MINOR_VERSION;
@@ -137,13 +137,13 @@ namespace SDL2
 
 		[DllImport(nativeLibName, EntryPoint = "MIX_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr INTERNAL_MIX_Linked_Version();
-		public static SDL.SDL_version MIX_Linked_Version()
+		public static Version MIX_Linked_Version()
 		{
-			SDL.SDL_version result;
+			Version result;
 			IntPtr result_ptr = INTERNAL_MIX_Linked_Version();
-			result = (SDL.SDL_version) Marshal.PtrToStructure(
+			result = (Version) Marshal.PtrToStructure(
 				result_ptr,
-				typeof(SDL.SDL_version)
+				typeof(Version)
 			);
 			return result;
 		}
@@ -184,7 +184,7 @@ namespace SDL2
 		/* This is an RWops macro in the C header. */
 		public static IntPtr Mix_LoadWAV(string file)
 		{
-			IntPtr rwops = SDL.SDL_RWFromFile(file, "rb");
+			IntPtr rwops = SDL.RWFromFile(file, "rb");
 			return Mix_LoadWAV_RW(rwops, 1);
 		}
 

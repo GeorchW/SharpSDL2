@@ -61,7 +61,7 @@ namespace SDL2
 			IMG_INIT_WEBP =	0x00000008
 		}
 
-		public static void SDL_IMAGE_VERSION(out SDL.SDL_version X)
+		public static void SDL_IMAGE_VERSION(out Version X)
 		{
 			X.major = SDL_IMAGE_MAJOR_VERSION;
 			X.minor = SDL_IMAGE_MINOR_VERSION;
@@ -70,13 +70,13 @@ namespace SDL2
 
 		[DllImport(nativeLibName, EntryPoint = "IMG_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr INTERNAL_IMG_Linked_Version();
-		public static SDL.SDL_version IMG_Linked_Version()
+		public static Version IMG_Linked_Version()
 		{
-			SDL.SDL_version result;
+			Version result;
 			IntPtr result_ptr = INTERNAL_IMG_Linked_Version();
-			result = (SDL.SDL_version) Marshal.PtrToStructure(
+			result = (Version) Marshal.PtrToStructure(
 				result_ptr,
-				typeof(SDL.SDL_version)
+				typeof(Version)
 			);
 			return result;
 		}
