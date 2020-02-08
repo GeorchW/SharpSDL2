@@ -35,43 +35,42 @@ namespace SDL2
 {
     public static partial class SDL
     {
-
-
 		#region log.h
 
-		/* Begin nameless enum LOG_CATEGORY */
-		public const int LOG_CATEGORY_APPLICATION = 0;
-		public const int LOG_CATEGORY_ERROR = 1;
-		public const int LOG_CATEGORY_ASSERT = 2;
-		public const int LOG_CATEGORY_SYSTEM = 3;
-		public const int LOG_CATEGORY_AUDIO = 4;
-		public const int LOG_CATEGORY_VIDEO = 5;
-		public const int LOG_CATEGORY_RENDER = 6;
-		public const int LOG_CATEGORY_INPUT = 7;
-		public const int LOG_CATEGORY_TEST = 8;
+		public enum LogCategory
+        {
+            Application = 0,
+            Error = 1,
+            Assert = 2,
+            System = 3,
+            Audio = 4,
+            Video = 5,
+            Render = 6,
+            Input = 7,
+            Test = 8,
 
-		/* Reserved for future SDL library use */
-		public const int LOG_CATEGORY_RESERVED1 = 9;
-		public const int LOG_CATEGORY_RESERVED2 = 10;
-		public const int LOG_CATEGORY_RESERVED3 = 11;
-		public const int LOG_CATEGORY_RESERVED4 = 12;
-		public const int LOG_CATEGORY_RESERVED5 = 13;
-		public const int LOG_CATEGORY_RESERVED6 = 14;
-		public const int LOG_CATEGORY_RESERVED7 = 15;
-		public const int LOG_CATEGORY_RESERVED8 = 16;
-		public const int LOG_CATEGORY_RESERVED9 = 17;
-		public const int LOG_CATEGORY_RESERVED10 = 18;
+            /* Reserved for future SDL library use */
+            Reserved1 = 9,
+            Reserved2 = 10,
+            Reserved3 = 11,
+            Reserved4 = 12,
+            Reserved5 = 13,
+            Reserved6 = 14,
+            Reserved7 = 15,
+            Reserved8 = 16,
+            Reserved9 = 17,
+            Reserved10 = 18,
 
-		/* Beyond this point is reserved for application use, e.g.
-			enum {
-				LogCategoryAwesome1 = LogCategoryCustom,
-				LogCategoryAwesome2,
-				LogCategoryAwesome3,
-				...
-			};
-		*/
-		public const int LOG_CATEGORY_CUSTOM = 19;
-		/* End nameless enum LOG_CATEGORY */
+            /* Beyond this point is reserved for application use, e.g.
+                enum {
+                    LogCategoryAwesome1 = LogCategoryCustom,
+                    LogCategoryAwesome2,
+                    LogCategoryAwesome3,
+                    ...
+                };
+            */
+            Custom = 19
+        }
 
 		public enum LogPriority
 		{
@@ -88,7 +87,7 @@ namespace SDL2
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void LogOutputFunction(
 			IntPtr userdata,
-			int category,
+			LogCategory category,
 			LogPriority priority,
 			IntPtr message
 		);
@@ -106,11 +105,11 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogVerbose", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogVerbose(
-			int category,
+			LogCategory category,
 			byte[] fmtAndArglist
 		);
 		public static void LogVerbose(
-			int category,
+			LogCategory category,
 			string fmtAndArglist
 		) {
 			INTERNAL_LogVerbose(
@@ -122,11 +121,11 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogDebug", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogDebug(
-			int category,
+			LogCategory category,
 			byte[] fmtAndArglist
 		);
 		public static void LogDebug(
-			int category,
+			LogCategory category,
 			string fmtAndArglist
 		) {
 			INTERNAL_LogDebug(
@@ -138,11 +137,11 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogInfo", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogInfo(
-			int category,
+			LogCategory category,
 			byte[] fmtAndArglist
 		);
 		public static void LogInfo(
-			int category,
+			LogCategory category,
 			string fmtAndArglist
 		) {
 			INTERNAL_LogInfo(
@@ -154,11 +153,11 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogWarn", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogWarn(
-			int category,
+			LogCategory category,
 			byte[] fmtAndArglist
 		);
 		public static void LogWarn(
-			int category,
+			LogCategory category,
 			string fmtAndArglist
 		) {
 			INTERNAL_LogWarn(
@@ -170,11 +169,11 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogError", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogError(
-			int category,
+			LogCategory category,
 			byte[] fmtAndArglist
 		);
 		public static void LogError(
-			int category,
+			LogCategory category,
 			string fmtAndArglist
 		) {
 			INTERNAL_LogError(
@@ -186,11 +185,11 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogCritical", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogCritical(
-			int category,
+			LogCategory category,
 			byte[] fmtAndArglist
 		);
 		public static void LogCritical(
-			int category,
+			LogCategory category,
 			string fmtAndArglist
 		) {
 			INTERNAL_LogCritical(
@@ -202,12 +201,12 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogMessage", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogMessage(
-			int category,
+			LogCategory category,
 			LogPriority priority,
 			byte[] fmtAndArglist
 		);
 		public static void LogMessage(
-			int category,
+			LogCategory category,
 			LogPriority priority,
 			string fmtAndArglist
 		) {
@@ -221,12 +220,12 @@ namespace SDL2
 		/* Use string.Format for arglists */
 		[DllImport(nativeLibName, EntryPoint = "SDL_LogMessageV", CallingConvention = CallingConvention.Cdecl)]
 		private static extern void INTERNAL_LogMessageV(
-			int category,
+			LogCategory category,
 			LogPriority priority,
 			byte[] fmtAndArglist
 		);
 		public static void LogMessageV(
-			int category,
+			LogCategory category,
 			LogPriority priority,
 			string fmtAndArglist
 		) {
@@ -239,12 +238,12 @@ namespace SDL2
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_LogGetPriority")]
 		public static extern LogPriority LogGetPriority(
-			int category
+			LogCategory category
 		);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_LogSetPriority")]
 		public static extern void LogSetPriority(
-			int category,
+			LogCategory category,
 			LogPriority priority
 		);
 
