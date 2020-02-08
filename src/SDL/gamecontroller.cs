@@ -84,8 +84,8 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct INTERNAL_GameControllerButtonBind_hat
 		{
-			public int hat;
-			public int hat_mask;
+			public int Hat;
+			public int HatMask;
 		}
 
 		// FIXME: I'd rather this somehow be private...
@@ -93,28 +93,28 @@ namespace SDL2
 		public struct INTERNAL_GameControllerButtonBind_union
 		{
 			[FieldOffset(0)]
-			public int button;
+			public int Button;
 			[FieldOffset(0)]
-			public int axis;
+			public int Axis;
 			[FieldOffset(0)]
-			public INTERNAL_GameControllerButtonBind_hat hat;
+			public INTERNAL_GameControllerButtonBind_hat Hat;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct GameControllerButtonBind
 		{
-			public GameControllerBindType bindType;
-			public INTERNAL_GameControllerButtonBind_union value;
+			public GameControllerBindType BindType;
+			public INTERNAL_GameControllerButtonBind_union Value;
 		}
 
 		/* This exists to deal with C# being stupid about blittable types. */
 		[StructLayout(LayoutKind.Sequential)]
 		private struct INTERNAL_GameControllerButtonBind
 		{
-			public int bindType;
+			public int BindType;
 			/* Largest data type in the union is two ints in size */
-			public int unionVal0;
-			public int unionVal1;
+			public int UnionVal0;
+			public int UnionVal1;
 		}
 
 		[DllImport(nativeLibName, EntryPoint = "SDL_GameControllerAddMapping", CallingConvention = CallingConvention.Cdecl)]
@@ -314,9 +314,9 @@ namespace SDL2
 				axis
 			);
 			GameControllerButtonBind result = new GameControllerButtonBind();
-			result.bindType = (GameControllerBindType) dumb.bindType;
-			result.value.hat.hat = dumb.unionVal0;
-			result.value.hat.hat_mask = dumb.unionVal1;
+			result.BindType = (GameControllerBindType) dumb.BindType;
+			result.Value.Hat.Hat = dumb.UnionVal0;
+			result.Value.Hat.HatMask = dumb.UnionVal1;
 			return result;
 		}
 
@@ -367,9 +367,9 @@ namespace SDL2
 				button
 			);
 			GameControllerButtonBind result = new GameControllerButtonBind();
-			result.bindType = (GameControllerBindType) dumb.bindType;
-			result.value.hat.hat = dumb.unionVal0;
-			result.value.hat.hat_mask = dumb.unionVal1;
+			result.BindType = (GameControllerBindType) dumb.BindType;
+			result.Value.Hat.Hat = dumb.UnionVal0;
+			result.Value.Hat.HatMask = dumb.UnionVal1;
 			return result;
 		}
 
