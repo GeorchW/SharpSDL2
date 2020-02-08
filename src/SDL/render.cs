@@ -74,12 +74,12 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public unsafe struct RendererInfo
 		{
-			public IntPtr name; // const char*
-			public uint flags;
-			public uint num_texture_formats;
-			public fixed uint texture_formats[16];
-			public int max_texture_width;
-			public int max_texture_height;
+			public IntPtr Name; // const char*
+			public uint Flags;
+			public uint NumTextureFormats;
+			public fixed uint TextureFormats[16];
+			public int MaxTextureWidth;
+			public int MaxTextureHeight;
 		}
 
 		/* IntPtr refers to an Renderer*, window to an Window* */
