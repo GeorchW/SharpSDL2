@@ -84,13 +84,13 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RWops
 		{
-			public IntPtr size;
-			public IntPtr seek;
-			public IntPtr read;
-			public IntPtr write;
-			public IntPtr close;
+			public IntPtr Size;
+			public IntPtr Seek;
+			public IntPtr Read;
+			public IntPtr Write;
+			public IntPtr Close;
 
-			public UInt32 type;
+			public UInt32 Type;
 
 			/* NOTE: This isn't the full structure since
 			 * the native RWops contains a hidden union full of
