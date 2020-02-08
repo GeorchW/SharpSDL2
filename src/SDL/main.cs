@@ -33,35 +33,31 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region main.h
+    /* This is used as a function pointer to a C main() function */
+    public delegate int MainFunction(int argc, IntPtr argv);
+
     public static partial class SDL
     {
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SetMainReady")]
+        public static extern void SetMainReady();
 
+        /* Use this function with UWP to call your C# Main() function! */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WinRTRunApp")]
+        public static extern int WinRTRunApp(
+            MainFunction mainFunction,
+            IntPtr reserved
+        );
 
-		#region main.h
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SetMainReady")]
-		public static extern void SetMainReady();
-
-		/* This is used as a function pointer to a C main() function */
-		public delegate int main_func(int argc, IntPtr argv);
-
-		/* Use this function with UWP to call your C# Main() function! */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_WinRTRunApp")]
-		public static extern int WinRTRunApp(
-			main_func mainFunction,
-			IntPtr reserved
-		);
-
-		/* Use this function with iOS to call your C# Main() function!
+        /* Use this function with iOS to call your C# Main() function!
 		 * Only available in SDL 2.0.10 or higher.
 		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_UIKitRunApp")]
-		public static extern int UIKitRunApp(
-			int argc,
-			IntPtr argv,
-			main_func mainFunction
-		);
-
-		#endregion
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_UIKitRunApp")]
+        public static extern int UIKitRunApp(
+            int argc,
+            IntPtr argv,
+            MainFunction mainFunction
+        );
     }
+    #endregion
 }

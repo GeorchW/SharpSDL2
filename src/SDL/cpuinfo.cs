@@ -33,73 +33,69 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region cpuinfo.h
     public static partial class SDL
     {
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetCPUCount")]
+        public static extern int GetCPUCount();
 
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetCPUCacheLineSize")]
+        public static extern int GetCPUCacheLineSize();
 
-		#region cpuinfo.h
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasRDTSC")]
+        public static extern bool HasRDTSC();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetCPUCount")]
-		public static extern int GetCPUCount();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasAltiVec")]
+        public static extern bool HasAltiVec();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetCPUCacheLineSize")]
-		public static extern int GetCPUCacheLineSize();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasMMX")]
+        public static extern bool HasMMX();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasRDTSC")]
-		public static extern bool HasRDTSC();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Has3DNow")]
+        public static extern bool Has3DNow();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasAltiVec")]
-		public static extern bool HasAltiVec();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasSSE")]
+        public static extern bool HasSSE();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasMMX")]
-		public static extern bool HasMMX();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasSSE2")]
+        public static extern bool HasSSE2();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_Has3DNow")]
-		public static extern bool Has3DNow();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasSSE3")]
+        public static extern bool HasSSE3();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasSSE")]
-		public static extern bool HasSSE();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasSSE41")]
+        public static extern bool HasSSE41();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasSSE2")]
-		public static extern bool HasSSE2();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasSSE42")]
+        public static extern bool HasSSE42();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasSSE3")]
-		public static extern bool HasSSE3();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasAVX")]
+        public static extern bool HasAVX();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasSSE41")]
-		public static extern bool HasSSE41();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasAVX2")]
+        public static extern bool HasAVX2();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasSSE42")]
-		public static extern bool HasSSE42();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasAVX512F")]
+        public static extern bool HasAVX512F();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasAVX")]
-		public static extern bool HasAVX();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasNEON")]
+        public static extern bool HasNEON();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasAVX2")]
-		public static extern bool HasAVX2();
+        /* Only available in 2.0.1 */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetSystemRAM")]
+        public static extern int GetSystemRAM();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasAVX512F")]
-		public static extern bool HasAVX512F();
+        /* Only available in SDL 2.0.10 or higher. */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SIMDGetAlignment")]
+        public static extern uint SIMDGetAlignment();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasNEON")]
-		public static extern bool HasNEON();
+        /* Only available in SDL 2.0.10 or higher. */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SIMDAlloc")]
+        public static extern IntPtr SIMDAlloc(uint len);
 
-		/* Only available in 2.0.1 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetSystemRAM")]
-		public static extern int GetSystemRAM();
-
-		/* Only available in SDL 2.0.10 or higher. */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SIMDGetAlignment")]
-		public static extern uint SIMDGetAlignment();
-
-		/* Only available in SDL 2.0.10 or higher. */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SIMDAlloc")]
-		public static extern IntPtr SIMDAlloc(uint len);
-
-		/* Only available in SDL 2.0.10 or higher. */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SIMDFree")]
-		public static extern void SIMDFree(IntPtr ptr);
-
-		#endregion
+        /* Only available in SDL 2.0.10 or higher. */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SIMDFree")]
+        public static extern void SIMDFree(IntPtr ptr);
     }
+    #endregion
 }

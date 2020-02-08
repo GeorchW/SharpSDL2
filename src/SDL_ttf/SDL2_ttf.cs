@@ -270,7 +270,7 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPStr)]
                 string text,
-            SDL.Color fg
+            Color fg
         );
 
         /* IntPtr refers to an Surface* */
@@ -278,12 +278,12 @@ namespace SDL2.TTF
         private static extern IntPtr INTERNAL_TTF_RenderUTF8_Solid(
             Font font,
             byte[] text,
-            SDL.Color fg
+            Color fg
         );
         public static IntPtr TTF_RenderUTF8_Solid(
             Font font,
             string text,
-            SDL.Color fg
+            Color fg
         )
         {
             return INTERNAL_TTF_RenderUTF8_Solid(
@@ -299,7 +299,7 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPWStr)]
                 string text,
-            SDL.Color fg
+            Color fg
         );
 
         /* IntPtr refers to an Surface* */
@@ -307,7 +307,7 @@ namespace SDL2.TTF
         public static extern IntPtr TTF_RenderGlyph_Solid(
             Font font,
             char c,
-            SDL.Color fg
+            Color fg
         );
 
         /* IntPtr refers to an Surface* */
@@ -316,8 +316,8 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPStr)]
                 string text,
-            SDL.Color fg,
-            SDL.Color bg
+            Color fg,
+            Color bg
         );
 
         /* IntPtr refers to an Surface* */
@@ -325,14 +325,14 @@ namespace SDL2.TTF
         private static extern IntPtr INTERNAL_TTF_RenderUTF8_Shaded(
             Font font,
             byte[] text,
-            SDL.Color fg,
-            SDL.Color bg
+            Color fg,
+            Color bg
         );
         public static IntPtr TTF_RenderUTF8_Shaded(
             Font font,
             string text,
-            SDL.Color fg,
-            SDL.Color bg
+            Color fg,
+            Color bg
         )
         {
             return INTERNAL_TTF_RenderUTF8_Shaded(
@@ -349,8 +349,8 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPWStr)]
                 string text,
-            SDL.Color fg,
-            SDL.Color bg
+            Color fg,
+            Color bg
         );
 
         /* IntPtr refers to an Surface* */
@@ -358,8 +358,8 @@ namespace SDL2.TTF
         public static extern IntPtr TTF_RenderGlyph_Shaded(
             Font font,
             char c,
-            SDL.Color fg,
-            SDL.Color bg
+            Color fg,
+            Color bg
         );
 
         /* IntPtr refers to an Surface* */
@@ -368,7 +368,7 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPStr)]
                 string text,
-            SDL.Color fg
+            Color fg
         );
 
         /* IntPtr refers to an Surface* */
@@ -376,12 +376,12 @@ namespace SDL2.TTF
         private static extern IntPtr INTERNAL_TTF_RenderUTF8_Blended(
             Font font,
             byte[] text,
-            SDL.Color fg
+            Color fg
         );
         public static IntPtr TTF_RenderUTF8_Blended(
             Font font,
             string text,
-            SDL.Color fg
+            Color fg
         )
         {
             return INTERNAL_TTF_RenderUTF8_Blended(
@@ -397,7 +397,7 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPWStr)]
                 string text,
-            SDL.Color fg
+            Color fg
         );
 
         /* IntPtr refers to an Surface* */
@@ -406,7 +406,7 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPStr)]
                 string text,
-            SDL.Color fg,
+            Color fg,
             uint wrapped
         );
 
@@ -415,13 +415,13 @@ namespace SDL2.TTF
         private static extern IntPtr INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
             Font font,
             byte[] text,
-            SDL.Color fg,
+            Color fg,
             uint wrapped
         );
         public static IntPtr TTF_RenderUTF8_Blended_Wrapped(
             Font font,
             string text,
-            SDL.Color fg,
+            Color fg,
             uint wrapped
         )
         {
@@ -439,7 +439,7 @@ namespace SDL2.TTF
             Font font,
             [In()] [MarshalAs(UnmanagedType.LPWStr)]
                 string text,
-            SDL.Color fg,
+            Color fg,
             uint wrapped
         );
 
@@ -448,7 +448,7 @@ namespace SDL2.TTF
         public static extern IntPtr TTF_RenderGlyph_Blended(
             Font font,
             char c,
-            SDL.Color fg
+            Color fg
         );
 
 

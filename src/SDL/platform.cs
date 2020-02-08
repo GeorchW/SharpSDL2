@@ -33,19 +33,16 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region platform.h
+
     public static partial class SDL
     {
-
-
-		#region platform.h
-
-		[DllImport(nativeLibName, EntryPoint = "SDL_GetPlatform", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_GetPlatform();
-		public static string GetPlatform()
-		{
-			return UTF8_ToManaged(INTERNAL_GetPlatform());
-		}
-
-		#endregion
+        [DllImport(nativeLibName, EntryPoint = "SDL_GetPlatform", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetPlatform();
+        public static string GetPlatform()
+        {
+            return UTF8_ToManaged(INTERNAL_GetPlatform());
+        }
     }
+    #endregion
 }

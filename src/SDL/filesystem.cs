@@ -33,37 +33,33 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region filesystem.h
     public static partial class SDL
     {
+        /* Only available in 2.0.1 */
+        [DllImport(nativeLibName, EntryPoint = "SDL_GetBasePath", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetBasePath();
+        public static string GetBasePath()
+        {
+            return UTF8_ToManaged(INTERNAL_GetBasePath(), true);
+        }
 
-
-		#region filesystem.h
-
-		/* Only available in 2.0.1 */
-		[DllImport(nativeLibName, EntryPoint = "SDL_GetBasePath", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_GetBasePath();
-		public static string GetBasePath()
-		{
-			return UTF8_ToManaged(INTERNAL_GetBasePath(), true);
-		}
-
-		/* Only available in 2.0.1 */
-		[DllImport(nativeLibName, EntryPoint = "SDL_GetPrefPath", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_GetPrefPath(
-			byte[] org,
-			byte[] app
-		);
-		public static string GetPrefPath(string org, string app)
-		{
-			return UTF8_ToManaged(
-				INTERNAL_GetPrefPath(
-					UTF8_ToNative(org),
-					UTF8_ToNative(app)
-				),
-				true
-			);
-		}
-
-		#endregion
+        /* Only available in 2.0.1 */
+        [DllImport(nativeLibName, EntryPoint = "SDL_GetPrefPath", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetPrefPath(
+            byte[] org,
+            byte[] app
+        );
+        public static string GetPrefPath(string org, string app)
+        {
+            return UTF8_ToManaged(
+                INTERNAL_GetPrefPath(
+                    UTF8_ToNative(org),
+                    UTF8_ToNative(app)
+                ),
+                true
+            );
+        }
     }
+    #endregion
 }

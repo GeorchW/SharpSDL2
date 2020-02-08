@@ -34,6 +34,7 @@ using System.Runtime.InteropServices;
 namespace SDL2
 {
 
+    #region version.h, revision.h
     [StructLayout(LayoutKind.Sequential)]
     public struct Version
     {
@@ -43,10 +44,6 @@ namespace SDL2
     }
     public static partial class SDL
     {
-
-
-        #region version.h, revision.h
-
         /* Similar to the headers, this is the version we're expecting to be
 		 * running with. You will likely want to check this somewhere in your
 		 * program!
@@ -90,7 +87,6 @@ namespace SDL2
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetRevisionNumber")]
         public static extern int GetRevisionNumber();
-
-        #endregion
     }
+    #endregion
 }

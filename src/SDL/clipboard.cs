@@ -33,34 +33,31 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region clipboard.h
     public static partial class SDL
     {
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasClipboardText")]
+        public static extern bool HasClipboardText();
 
+        [DllImport(nativeLibName, EntryPoint = "SDL_GetClipboardText", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetClipboardText();
+        public static string GetClipboardText()
+        {
+            return UTF8_ToManaged(INTERNAL_GetClipboardText(), true);
+        }
 
-		#region clipboard.h
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasClipboardText")]
-		public static extern bool HasClipboardText();
-
-		[DllImport(nativeLibName, EntryPoint = "SDL_GetClipboardText", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_GetClipboardText();
-		public static string GetClipboardText()
-		{
-			return UTF8_ToManaged(INTERNAL_GetClipboardText(), true);
-		}
-
-		[DllImport(nativeLibName, EntryPoint = "SDL_SetClipboardText", CallingConvention = CallingConvention.Cdecl)]
-		private static extern int INTERNAL_SetClipboardText(
-			byte[] text
-		);
-		public static int SetClipboardText(
-			string text
-		) {
-			return INTERNAL_SetClipboardText(
-				UTF8_ToNative(text)
-			);
-		}
-
-		#endregion
+        [DllImport(nativeLibName, EntryPoint = "SDL_SetClipboardText", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int INTERNAL_SetClipboardText(
+            byte[] text
+        );
+        public static int SetClipboardText(
+            string text
+        )
+        {
+            return INTERNAL_SetClipboardText(
+                UTF8_ToNative(text)
+            );
+        }
     }
+    #endregion
 }

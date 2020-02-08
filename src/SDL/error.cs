@@ -33,32 +33,28 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region error.h
     public static partial class SDL
     {
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ClearError")]
+        public static extern void ClearError();
 
+        [DllImport(nativeLibName, EntryPoint = "SDL_GetError", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_GetError();
+        public static string GetError()
+        {
+            return UTF8_ToManaged(INTERNAL_GetError());
+        }
 
-		#region error.h
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_ClearError")]
-		public static extern void ClearError();
-
-		[DllImport(nativeLibName, EntryPoint = "SDL_GetError", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_GetError();
-		public static string GetError()
-		{
-			return UTF8_ToManaged(INTERNAL_GetError());
-		}
-
-		/* Use string.Format for arglists */
-		[DllImport(nativeLibName, EntryPoint = "SDL_SetError", CallingConvention = CallingConvention.Cdecl)]
-		private static extern void INTERNAL_SetError(byte[] fmtAndArglist);
-		public static void SetError(string fmtAndArglist)
-		{
-			INTERNAL_SetError(
-				UTF8_ToNative(fmtAndArglist)
-			);
-		}
-
-		#endregion
+        /* Use string.Format for arglists */
+        [DllImport(nativeLibName, EntryPoint = "SDL_SetError", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void INTERNAL_SetError(byte[] fmtAndArglist);
+        public static void SetError(string fmtAndArglist)
+        {
+            INTERNAL_SetError(
+                UTF8_ToNative(fmtAndArglist)
+            );
+        }
     }
+    #endregion
 }

@@ -33,27 +33,23 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region power.h
+    public enum PowerState
+    {
+        Unknown = 0,
+        OnBattery,
+        NoBattery,
+        Charging,
+        Charged
+    }
+
     public static partial class SDL
     {
-
-
-		#region power.h
-
-		public enum PowerState
-		{
-			Unknown = 0,
-			OnBattery,
-			NoBattery,
-			Charging,
-			Charged
-		}
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetPowerInfo")]
-		public static extern PowerState GetPowerInfo(
-			out int secs,
-			out int pct
-		);
-
-		#endregion
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPowerInfo")]
+        public static extern PowerState GetPowerInfo(
+            out int secs,
+            out int pct
+        );
     }
+    #endregion
 }

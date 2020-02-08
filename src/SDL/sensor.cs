@@ -33,88 +33,85 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region sensor.h
+
+    /* This region is only available in 2.0.9 or higher. */
+
+    public enum SensorType
+    {
+        Invalid = -1,
+        Unknown,
+        Accel,
+        Gyro
+    }
+
     public static partial class SDL
     {
+        public const float StandardGravity = 9.80665f;
 
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_NumSensors")]
+        public static extern int NumSensors();
 
-		#region sensor.h
+        [DllImport(nativeLibName, EntryPoint = "SDL_SensorGetDeviceName", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_SensorGetDeviceName(int device_index);
+        public static string SensorGetDeviceName(int device_index)
+        {
+            return UTF8_ToManaged(INTERNAL_SensorGetDeviceName(device_index));
+        }
 
-		/* This region is only available in 2.0.9 or higher. */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetDeviceType")]
+        public static extern SensorType SensorGetDeviceType(int device_index);
 
-		public enum SensorType
-		{
-			Invalid = -1,
-			Unknown,
-			Accel,
-			Gyro
-		}
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetDeviceNonPortableType")]
+        public static extern int SensorGetDeviceNonPortableType(int device_index);
 
-		public const float STANDARD_GRAVITY = 9.80665f;
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetDeviceInstanceID")]
+        public static extern Int32 SensorGetDeviceInstanceID(int device_index);
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_NumSensors")]
-		public static extern int NumSensors();
+        /* IntPtr refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorOpen")]
+        public static extern IntPtr SensorOpen(int device_index);
 
-		[DllImport(nativeLibName, EntryPoint = "SDL_SensorGetDeviceName", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_SensorGetDeviceName(int device_index);
-		public static string SensorGetDeviceName(int device_index)
-		{
-			return UTF8_ToManaged(INTERNAL_SensorGetDeviceName(device_index));
-		}
+        /* IntPtr refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorFromInstanceID")]
+        public static extern IntPtr SensorFromInstanceID(
+            Int32 instance_id
+        );
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetDeviceType")]
-		public static extern SensorType SensorGetDeviceType(int device_index);
+        /* sensor refers to an Sensor* */
+        [DllImport(nativeLibName, EntryPoint = "SDL_SensorGetName", CallingConvention = CallingConvention.Cdecl)]
+        private static extern IntPtr INTERNAL_SensorGetName(IntPtr sensor);
+        public static string SensorGetName(IntPtr sensor)
+        {
+            return UTF8_ToManaged(INTERNAL_SensorGetName(sensor));
+        }
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetDeviceNonPortableType")]
-		public static extern int SensorGetDeviceNonPortableType(int device_index);
+        /* sensor refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetType")]
+        public static extern SensorType SensorGetType(IntPtr sensor);
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetDeviceInstanceID")]
-		public static extern Int32 SensorGetDeviceInstanceID(int device_index);
+        /* sensor refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetNonPortableType")]
+        public static extern int SensorGetNonPortableType(IntPtr sensor);
 
-		/* IntPtr refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorOpen")]
-		public static extern IntPtr SensorOpen(int device_index);
+        /* sensor refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetInstanceID")]
+        public static extern Int32 SensorGetInstanceID(IntPtr sensor);
 
-		/* IntPtr refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorFromInstanceID")]
-		public static extern IntPtr SensorFromInstanceID(
-			Int32 instance_id
-		);
+        /* sensor refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetData")]
+        public static extern int SensorGetData(
+            IntPtr sensor,
+            float[] data,
+            int num_values
+        );
 
-		/* sensor refers to an Sensor* */
-		[DllImport(nativeLibName, EntryPoint = "SDL_SensorGetName", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_SensorGetName(IntPtr sensor);
-		public static string SensorGetName(IntPtr sensor)
-		{
-			return UTF8_ToManaged(INTERNAL_SensorGetName(sensor));
-		}
+        /* sensor refers to an Sensor* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorClose")]
+        public static extern void SensorClose(IntPtr sensor);
 
-		/* sensor refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetType")]
-		public static extern SensorType SensorGetType(IntPtr sensor);
-
-		/* sensor refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetNonPortableType")]
-		public static extern int SensorGetNonPortableType(IntPtr sensor);
-
-		/* sensor refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetInstanceID")]
-		public static extern Int32 SensorGetInstanceID(IntPtr sensor);
-
-		/* sensor refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorGetData")]
-		public static extern int SensorGetData(
-			IntPtr sensor,
-			float[] data,
-			int num_values
-		);
-
-		/* sensor refers to an Sensor* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorClose")]
-		public static extern void SensorClose(IntPtr sensor);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_SensorUpdate")]
-		public static extern void SensorUpdate();
-
-		#endregion
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorUpdate")]
+        public static extern void SensorUpdate();
     }
+    #endregion
 }

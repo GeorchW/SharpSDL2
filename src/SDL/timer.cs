@@ -33,56 +33,52 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region timer.h
     public static partial class SDL
     {
-
-
-		#region timer.h
-
-		/* System timers rely on different OS mechanisms depending on
+        /* System timers rely on different OS mechanisms depending on
 		 * which operating system SDL2 is compiled against.
 		 */
 
-		/* Compare tick values, return true if A has passed B. Introduced in SDL 2.0.1,
+        /* Compare tick values, return true if A has passed B. Introduced in SDL 2.0.1,
 		 * but does not require it (it was a macro).
 		 */
-		public static bool TICKS_PASSED(UInt32 A, UInt32 B)
-		{
-			return ((Int32)(B - A) <= 0);
-		}
+        public static bool TICKS_PASSED(UInt32 A, UInt32 B)
+        {
+            return ((Int32)(B - A) <= 0);
+        }
 
-		/* Delays the thread's processing based on the milliseconds parameter */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_Delay")]
-		public static extern void Delay(UInt32 ms);
+        /* Delays the thread's processing based on the milliseconds parameter */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Delay")]
+        public static extern void Delay(UInt32 ms);
 
-		/* Returns the milliseconds that have passed since SDL was initialized */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetTicks")]
-		public static extern UInt32 GetTicks();
+        /* Returns the milliseconds that have passed since SDL was initialized */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTicks")]
+        public static extern UInt32 GetTicks();
 
-		/* Get the current value of the high resolution counter */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetPerformanceCounter")]
-		public static extern UInt64 GetPerformanceCounter();
+        /* Get the current value of the high resolution counter */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPerformanceCounter")]
+        public static extern UInt64 GetPerformanceCounter();
 
-		/* Get the count per second of the high resolution counter */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetPerformanceFrequency")]
-		public static extern UInt64 GetPerformanceFrequency();
+        /* Get the count per second of the high resolution counter */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPerformanceFrequency")]
+        public static extern UInt64 GetPerformanceFrequency();
 
-		/* param refers to a void* */
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-		public delegate UInt32 TimerCallback(UInt32 interval, IntPtr param);
+        /* param refers to a void* */
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate UInt32 TimerCallback(UInt32 interval, IntPtr param);
 
-		/* int refers to an TimerID, param to a void* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_AddTimer")]
-		public static extern int AddTimer(
-			UInt32 interval,
-			TimerCallback callback,
-			IntPtr param
-		);
+        /* int refers to an TimerID, param to a void* */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AddTimer")]
+        public static extern int AddTimer(
+            UInt32 interval,
+            TimerCallback callback,
+            IntPtr param
+        );
 
-		/* id refers to an TimerID */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_RemoveTimer")]
-		public static extern bool RemoveTimer(int id);
-
-		#endregion
+        /* id refers to an TimerID */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RemoveTimer")]
+        public static extern bool RemoveTimer(int id);
     }
+    #endregion
 }

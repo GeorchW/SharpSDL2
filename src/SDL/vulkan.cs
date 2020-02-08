@@ -33,12 +33,10 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
-    public static partial class SDL
-    {
-
-
 		#region vulkan.h
 
+    public static partial class SDL
+    {
 		/* Only available in 2.0.6 */
 		[DllImport(nativeLibName, EntryPoint = "SDL_Vulkan_LoadLibrary", CallingConvention = CallingConvention.Cdecl)]
 		private static extern int INTERNAL_Vulkan_LoadLibrary(

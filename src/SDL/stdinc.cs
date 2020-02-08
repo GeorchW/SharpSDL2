@@ -33,27 +33,20 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region stdinc.h
     public static partial class SDL
     {
+        public static uint FOURCC(byte A, byte B, byte C, byte D)
+        {
+            return (uint)(A | (B << 8) | (C << 16) | (D << 24));
+        }
 
+        /* malloc/free are used by the marshaler! -flibit */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern IntPtr malloc(IntPtr size);
 
-		#region stdinc.h
-
-		public static uint FOURCC(byte A, byte B, byte C, byte D)
-		{
-			return (uint) (A | (B << 8) | (C << 16) | (D << 24));
-		}
-
-		
-
-		/* malloc/free are used by the marshaler! -flibit */
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern IntPtr malloc(IntPtr size);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		internal static extern void free(IntPtr memblock);
-
-		#endregion
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void free(IntPtr memblock);
     }
+    #endregion
 }

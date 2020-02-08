@@ -78,13 +78,13 @@ namespace SDL2.TTF
         ) => TTF_GlyphMetrics(this, ch, out minx, out maxx, out miny, out maxy, out advance);
 
         public int GetTextSize(string text, out int w, out int h) => TTF_SizeText(this, text, out w, out h);
-        public IntPtr RenderTextSolid(string text, SDL.Color fg) => TTF_RenderText_Solid(this, text, fg);
-        public IntPtr RenderGlyphSolid(char c, SDL.Color fg) => TTF_RenderGlyph_Solid(this, c, fg);
-        public IntPtr RenderTextShaded(string text, SDL.Color fg, SDL.Color bg) => TTF_RenderText_Shaded(this, text, fg, bg);
-        public IntPtr RenderGlyphShaded(char c, SDL.Color fg, SDL.Color bg) => TTF_RenderGlyph_Shaded(this, c, fg, bg);
-        public IntPtr RenderTextBlended(string text, SDL.Color fg) => TTF_RenderText_Blended(this, text, fg);
-        public IntPtr RenderGlyphBlended(char c, SDL.Color fg) => TTF_RenderGlyph_Blended(this, c, fg);
-        public IntPtr RenderTextBlendedWrapped(string text, SDL.Color fg, uint wrapped) => TTF_RenderText_Blended_Wrapped(this, text, fg, wrapped);
+        public IntPtr RenderTextSolid(string text, Color fg) => TTF_RenderText_Solid(this, text, fg);
+        public IntPtr RenderGlyphSolid(char c, Color fg) => TTF_RenderGlyph_Solid(this, c, fg);
+        public IntPtr RenderTextShaded(string text, Color fg, Color bg) => TTF_RenderText_Shaded(this, text, fg, bg);
+        public IntPtr RenderGlyphShaded(char c, Color fg, Color bg) => TTF_RenderGlyph_Shaded(this, c, fg, bg);
+        public IntPtr RenderTextBlended(string text, Color fg) => TTF_RenderText_Blended(this, text, fg);
+        public IntPtr RenderGlyphBlended(char c, Color fg) => TTF_RenderGlyph_Blended(this, c, fg);
+        public IntPtr RenderTextBlendedWrapped(string text, Color fg, uint wrapped) => TTF_RenderText_Blended_Wrapped(this, text, fg, wrapped);
 
         public int GetFontKerningSize(int prev_index, int index) => TTF.GetFontKerningSize(this, prev_index, index);
 

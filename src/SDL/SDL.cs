@@ -33,28 +33,28 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region SDL.h
+    [Flags]
+    public enum InitFlags
+    {
+        Timer = 0x00000001,
+        Audio = 0x00000010,
+        Video = 0x00000020,
+        Joystick = 0x00000200,
+        Haptic = 0x00001000,
+        GameController = 0x00002000,
+        Events = 0x00004000,
+        Sensor = 0x00008000,
+        Noparachute = 0x00100000,
+        Everything = (
+            Timer | Audio | Video |
+            Events | Joystick | Haptic |
+            GameController | Sensor
+        ),
+    }
+
     public static partial class SDL
     {
-        #region SDL.h
-        [Flags]
-        public enum InitFlags
-        {
-            Timer = 0x00000001,
-            Audio = 0x00000010,
-            Video = 0x00000020,
-            Joystick = 0x00000200,
-            Haptic = 0x00001000,
-            GameController = 0x00002000,
-            Events = 0x00004000,
-            Sensor = 0x00008000,
-            Noparachute = 0x00100000,
-            Everything = (
-                Timer | Audio | Video |
-                Events | Joystick | Haptic |
-                GameController | Sensor
-            ),
-        }
-
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Init")]
         public static extern int Init(InitFlags flags);
 
@@ -69,7 +69,6 @@ namespace SDL2
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WasInit")]
         public static extern InitFlags WasInit(InitFlags flags);
-
-        #endregion
     }
+    #endregion
 }

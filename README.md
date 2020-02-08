@@ -35,5 +35,5 @@ names threads with the 0x406D1388 exception will silently exit. To prevent this
 exception from being thrown by SDL, add this line before your SDL_Init call:
 
 ```csharp
-SDL.SetHint(SDL.HINT_WINDOWS_DISABLE_THREAD_NAMING, "1");
+SDL.SetHint(SDL.WINDOWS_DISABLE_THREAD_NAMING, "1");
 ```

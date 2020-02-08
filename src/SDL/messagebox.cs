@@ -33,176 +33,173 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region messagebox.h
+    [Flags]
+    public enum MessageBoxFlags : uint
+    {
+        Error = 0x00000010,
+        Warning = 0x00000020,
+        Information = 0x00000040
+    }
+
+    [Flags]
+    public enum MessageBoxButtonFlags : uint
+    {
+        ReturnKeyDefault = 0x00000001,
+        EscapeKeyDefault = 0x00000002
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct INTERNAL_MessageBoxButtonData
+    {
+        public MessageBoxButtonFlags Flags;
+        public int ButtonId;
+        ///<summary> The UTF-8 button text </summary>
+        public IntPtr Text;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MessageBoxButtonData
+    {
+        public MessageBoxButtonFlags Flags;
+        public int ButtonId;
+        ///<summary> The UTF-8 button text </summary>
+        public string Text;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MessageBoxColor
+    {
+        public byte R, G, B;
+    }
+
+    public enum MessageBoxColorType
+    {
+        Background,
+        Text,
+        ButtonBorder,
+        ButtonBackground,
+        ButtonSelected,
+        Max
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MessageBoxColorScheme
+    {
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = (int)MessageBoxColorType.Max)]
+        public MessageBoxColor[] colors;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct INTERNAL_MessageBoxData
+    {
+        public MessageBoxFlags Flags;
+        public IntPtr Window;               /* Parent window, can be NULL */
+        public IntPtr Title;                /* UTF-8 title */
+        public IntPtr Message;              /* UTF-8 message text */
+        public int Numbuttons;
+        public IntPtr Buttons;
+        public IntPtr ColorScheme;          /* Can be NULL to use system settings */
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MessageBoxData
+    {
+        public MessageBoxFlags Flags;
+        public IntPtr Window;               /* Parent window, can be NULL */
+        public string Title;                /* UTF-8 title */
+        public string Message;              /* UTF-8 message text */
+        public int Numbuttons;
+        public MessageBoxButtonData[] Buttons;
+        public MessageBoxColorScheme? ColorScheme;  /* Can be NULL to use system settings */
+    }
     public static partial class SDL
     {
 
+        [DllImport(nativeLibName, EntryPoint = "SDL_ShowMessageBox", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int INTERNAL_ShowMessageBox(in INTERNAL_MessageBoxData messageboxdata, out int buttonid);
 
-		#region messagebox.h
+        /* Ripped from Jameson's LpUtf8StrMarshaler */
+        private static IntPtr INTERNAL_AllocUTF8(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return IntPtr.Zero;
+            }
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(str + '\0');
+            IntPtr mem = SDL.malloc((IntPtr)bytes.Length);
+            Marshal.Copy(bytes, 0, mem, bytes.Length);
+            return mem;
+        }
 
-		[Flags]
-		public enum MessageBoxFlags : uint
-		{
-			Error =		0x00000010,
-			Warning =	0x00000020,
-			Information =	0x00000040
-		}
+        public static unsafe int ShowMessageBox(in MessageBoxData messageboxdata, out int buttonid)
+        {
+            var data = new INTERNAL_MessageBoxData()
+            {
+                Flags = messageboxdata.Flags,
+                Window = messageboxdata.Window,
+                Title = INTERNAL_AllocUTF8(messageboxdata.Title),
+                Message = INTERNAL_AllocUTF8(messageboxdata.Message),
+                Numbuttons = messageboxdata.Numbuttons,
+            };
 
-		[Flags]
-		public enum MessageBoxButtonFlags : uint
-		{
-			ReturnKeyDefault = 0x00000001,
-			EscapeKeyDefault = 0x00000002
-		}
+            var buttons = new INTERNAL_MessageBoxButtonData[messageboxdata.Numbuttons];
+            for (int i = 0; i < messageboxdata.Numbuttons; i++)
+            {
+                buttons[i] = new INTERNAL_MessageBoxButtonData()
+                {
+                    Flags = messageboxdata.Buttons[i].Flags,
+                    ButtonId = messageboxdata.Buttons[i].ButtonId,
+                    Text = INTERNAL_AllocUTF8(messageboxdata.Buttons[i].Text),
+                };
+            }
 
-		[StructLayout(LayoutKind.Sequential)]
-		private struct INTERNAL_MessageBoxButtonData
-		{
-			public MessageBoxButtonFlags Flags;
-			public int ButtonId;
-			///<summary> The UTF-8 button text </summary>
-			public IntPtr Text;
-		}
+            if (messageboxdata.ColorScheme != null)
+            {
+                data.ColorScheme = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(MessageBoxColorScheme)));
+                Marshal.StructureToPtr(messageboxdata.ColorScheme.Value, data.ColorScheme, false);
+            }
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct MessageBoxButtonData
-		{
-			public MessageBoxButtonFlags Flags;
-			public int ButtonId;
-			///<summary> The UTF-8 button text </summary>
-			public string Text;
-		}
+            int result;
+            fixed (INTERNAL_MessageBoxButtonData* buttonsPtr = &buttons[0])
+            {
+                data.Buttons = (IntPtr)buttonsPtr;
+                result = INTERNAL_ShowMessageBox(in data, out buttonid);
+            }
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct MessageBoxColor
-		{
-			public byte R, G, B;
-		}
+            Marshal.FreeHGlobal(data.ColorScheme);
+            for (int i = 0; i < messageboxdata.Numbuttons; i++)
+            {
+                free(buttons[i].Text);
+            }
+            free(data.Message);
+            free(data.Title);
 
-		public enum MessageBoxColorType
-		{
-			Background,
-			Text,
-			ButtonBorder,
-			ButtonBackground,
-			ButtonSelected,
-			Max
-		}
+            return result;
+        }
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct MessageBoxColorScheme
-		{
-			[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = (int)MessageBoxColorType.Max)]
-				public MessageBoxColor[] colors;
-		}
-
-		[StructLayout(LayoutKind.Sequential)]
-		private struct INTERNAL_MessageBoxData
-		{
-			public MessageBoxFlags Flags;
-			public IntPtr Window;				/* Parent window, can be NULL */
-			public IntPtr Title;				/* UTF-8 title */
-			public IntPtr Message;				/* UTF-8 message text */
-			public int Numbuttons;
-			public IntPtr Buttons;
-			public IntPtr ColorScheme;			/* Can be NULL to use system settings */
-		}
-
-		[StructLayout(LayoutKind.Sequential)]
-		public struct MessageBoxData
-		{
-			public MessageBoxFlags Flags;
-			public IntPtr Window;				/* Parent window, can be NULL */
-			public string Title;				/* UTF-8 title */
-			public string Message;				/* UTF-8 message text */
-			public int Numbuttons;
-			public MessageBoxButtonData[] Buttons;
-			public MessageBoxColorScheme? ColorScheme;	/* Can be NULL to use system settings */
-		}
-
-		[DllImport(nativeLibName, EntryPoint = "SDL_ShowMessageBox", CallingConvention = CallingConvention.Cdecl)]
-		private static extern int INTERNAL_ShowMessageBox(in INTERNAL_MessageBoxData messageboxdata, out int buttonid);
-
-		/* Ripped from Jameson's LpUtf8StrMarshaler */
-		private static IntPtr INTERNAL_AllocUTF8(string str)
-		{
-			if (string.IsNullOrEmpty(str))
-			{
-				return IntPtr.Zero;
-			}
-			byte[] bytes = System.Text.Encoding.UTF8.GetBytes(str + '\0');
-			IntPtr mem = SDL.malloc((IntPtr) bytes.Length);
-			Marshal.Copy(bytes, 0, mem, bytes.Length);
-			return mem;
-		}
-
-		public static unsafe int ShowMessageBox(in MessageBoxData messageboxdata, out int buttonid)
-		{
-			var data = new INTERNAL_MessageBoxData()
-			{
-				Flags = messageboxdata.Flags,
-				Window = messageboxdata.Window,
-				Title = INTERNAL_AllocUTF8(messageboxdata.Title),
-				Message = INTERNAL_AllocUTF8(messageboxdata.Message),
-				Numbuttons = messageboxdata.Numbuttons,
-			};
-
-			var buttons = new INTERNAL_MessageBoxButtonData[messageboxdata.Numbuttons];
-			for (int i = 0; i < messageboxdata.Numbuttons; i++)
-			{
-				buttons[i] = new INTERNAL_MessageBoxButtonData()
-				{
-					Flags = messageboxdata.Buttons[i].Flags,
-					ButtonId = messageboxdata.Buttons[i].ButtonId,
-					Text = INTERNAL_AllocUTF8(messageboxdata.Buttons[i].Text),
-				};
-			}
-
-			if (messageboxdata.ColorScheme != null)
-			{
-				data.ColorScheme = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(MessageBoxColorScheme)));
-				Marshal.StructureToPtr(messageboxdata.ColorScheme.Value, data.ColorScheme, false);
-			}
-
-			int result;
-			fixed (INTERNAL_MessageBoxButtonData* buttonsPtr = &buttons[0])
-			{
-				data.Buttons = (IntPtr)buttonsPtr;
-				result = INTERNAL_ShowMessageBox(in data, out buttonid);
-			}
-
-			Marshal.FreeHGlobal(data.ColorScheme);
-			for (int i = 0; i < messageboxdata.Numbuttons; i++)
-			{
-				free(buttons[i].Text);
-			}
-			free(data.Message);
-			free(data.Title);
-
-			return result;
-		}
-
-		/* window refers to an Window* */
-		[DllImport(nativeLibName, EntryPoint = "SDL_ShowSimpleMessageBox", CallingConvention = CallingConvention.Cdecl)]
-		private static extern int INTERNAL_ShowSimpleMessageBox(
-			MessageBoxFlags flags,
-			byte[] title,
-			byte[] message,
-			IntPtr window
-		);
-		public static int ShowSimpleMessageBox(
-			MessageBoxFlags flags,
-			string title,
-			string message,
-			IntPtr window
-		) {
-			return INTERNAL_ShowSimpleMessageBox(
-				flags,
-				UTF8_ToNative(title),
-				UTF8_ToNative(message),
-				window
-			);
-		}
-
-		#endregion
+        /* window refers to an Window* */
+        [DllImport(nativeLibName, EntryPoint = "SDL_ShowSimpleMessageBox", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int INTERNAL_ShowSimpleMessageBox(
+            MessageBoxFlags flags,
+            byte[] title,
+            byte[] message,
+            IntPtr window
+        );
+        public static int ShowSimpleMessageBox(
+            MessageBoxFlags flags,
+            string title,
+            string message,
+            IntPtr window
+        )
+        {
+            return INTERNAL_ShowSimpleMessageBox(
+                flags,
+                UTF8_ToNative(title),
+                UTF8_ToNative(message),
+                window
+            );
+        }
     }
+    #endregion
 }

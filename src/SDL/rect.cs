@@ -33,107 +33,105 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region rect.h
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Point
+    {
+        public int X;
+        public int Y;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Rect
+    {
+        public int X;
+        public int Y;
+        public int W;
+        public int H;
+    }
+
+    /* Only available in 2.0.10 or higher. */
+    [StructLayout(LayoutKind.Sequential)]
+    public struct FPoint
+    {
+        public float X;
+        public float Y;
+    }
+
+    /* Only available in 2.0.10 or higher. */
+    [StructLayout(LayoutKind.Sequential)]
+    public struct FRect
+    {
+        public float X;
+        public float Y;
+        public float W;
+        public float H;
+    }
+
     public static partial class SDL
     {
+        /* Only available in 2.0.4 */
+        public static bool PointInRect(in Point p, in Rect r)
+        {
+            return ((p.X >= r.X) &&
+                    (p.X < (r.X + r.W)) &&
+                    (p.Y >= r.Y) &&
+                    (p.Y < (r.Y + r.H)));
+        }
 
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_EnclosePoints")]
+        public static extern bool EnclosePoints(
+            [In] Point[] points,
+            int count,
+            in Rect clip,
+            out Rect result
+        );
 
-		#region rect.h
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasIntersection")]
+        public static extern bool HasIntersection(
+            in Rect A,
+            in Rect B
+        );
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct Point
-		{
-			public int X;
-			public int Y;
-		}
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_IntersectRect")]
+        public static extern bool IntersectRect(
+            in Rect A,
+            in Rect B,
+            out Rect result
+        );
 
-		[StructLayout(LayoutKind.Sequential)]
-		public struct Rect
-		{
-			public int X;
-			public int Y;
-			public int W;
-			public int H;
-		}
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_IntersectRectAndLine")]
+        public static extern bool IntersectRectAndLine(
+            in Rect rect,
+            in int X1,
+            in int Y1,
+            in int X2,
+            in int Y2
+        );
 
-		/* Only available in 2.0.10 or higher. */
-		[StructLayout(LayoutKind.Sequential)]
-		public struct FPoint
-		{
-			public float X;
-			public float Y;
-		}
+        public static bool RectEmpty(ref Rect r)
+        {
+            return ((r.W <= 0) || (r.H <= 0));
+        }
 
-		/* Only available in 2.0.10 or higher. */
-		[StructLayout(LayoutKind.Sequential)]
-		public struct FRect
-		{
-			public float X;
-			public float Y;
-			public float W;
-			public float H;
-		}
+        public static bool RectEquals(
+            in Rect a,
+            in Rect b
+        )
+        {
+            return ((a.X == b.X) &&
+                    (a.Y == b.Y) &&
+                    (a.W == b.W) &&
+                    (a.H == b.H));
+        }
 
-		/* Only available in 2.0.4 */
-		public static bool PointInRect(in Point p, in Rect r)
-		{
-			return ((p.X >= r.X) &&
-					(p.X < (r.X + r.W)) &&
-					(p.Y >= r.Y) &&
-					(p.Y < (r.Y + r.H))	) ;
-		}
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_EnclosePoints")]
-		public static extern bool EnclosePoints(
-			[In] Point[] points,
-			int count,
-			in Rect clip,
-			out Rect result
-		);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_HasIntersection")]
-		public static extern bool HasIntersection(
-			in Rect A,
-			in Rect B
-		);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_IntersectRect")]
-		public static extern bool IntersectRect(
-			in Rect A,
-			in Rect B,
-			out Rect result
-		);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_IntersectRectAndLine")]
-		public static extern bool IntersectRectAndLine(
-			in Rect rect,
-			in int X1,
-			in int Y1,
-			in int X2,
-			in int Y2
-		);
-
-		public static bool RectEmpty(ref Rect r)
-		{
-			return ((r.W <= 0) || (r.H <= 0)) ;
-		}
-
-		public static bool RectEquals(
-			in Rect a,
-			in Rect b
-		) {
-			return (	(a.X == b.X) &&
-					(a.Y == b.Y) &&
-					(a.W == b.W) &&
-					(a.H == b.H)	) ;
-		}
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_UnionRect")]
-		public static extern void UnionRect(
-			in Rect A,
-			in Rect B,
-			out Rect result
-		);
-
-		#endregion
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_UnionRect")]
+        public static extern void UnionRect(
+            in Rect A,
+            in Rect B,
+            out Rect result
+        );
     }
+    #endregion
 }

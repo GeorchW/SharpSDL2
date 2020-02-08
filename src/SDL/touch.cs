@@ -33,60 +33,55 @@ using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
 {
+    #region touch.h
+    public struct Finger
+    {
+        public long Id; // FingerID
+        public float X;
+        public float Y;
+        public float Pressure;
+    }
+
+    /* Only available in SDL 2.0.10 or higher. */
+    public enum TouchDeviceType
+    {
+        Invalid = -1,
+        Direct,            /* touch screen with window-relative coordinates */
+        IndirectAbsolute, /* trackpad with absolute device coordinates */
+        IndirectRelative  /* trackpad with screen cursor-relative coordinates */
+    }
+
     public static partial class SDL
     {
-
-
-		#region touch.h
-
-		public const uint TOUCH_MOUSEID = uint.MaxValue;
-
-		public struct Finger
-		{
-			public long Id; // FingerID
-			public float X;
-			public float Y;
-			public float Pressure;
-		}
-
-		/* Only available in SDL 2.0.10 or higher. */
-		public enum TouchDeviceType
-		{
-			Invalid = -1,
-			Direct,            /* touch screen with window-relative coordinates */
-			IndirectAbsolute, /* trackpad with absolute device coordinates */
-			IndirectRelative  /* trackpad with screen cursor-relative coordinates */
-		}
-
-		/**
+        public const uint TOUCH_MOUSEID = uint.MaxValue;
+        /**
 		 *  \brief Get the number of registered touch devices.
  		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetNumTouchDevices")]
-		public static extern int GetNumTouchDevices();
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetNumTouchDevices")]
+        public static extern int GetNumTouchDevices();
 
-		/**
+        /**
 		 *  \brief Get the touch ID with the given index, or 0 if the index is invalid.
 		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetTouchDevice")]
-		public static extern long GetTouchDevice(int index);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTouchDevice")]
+        public static extern long GetTouchDevice(int index);
 
-		/**
+        /**
 		 *  \brief Get the number of active fingers for a given touch device.
 		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetNumTouchFingers")]
-		public static extern int GetNumTouchFingers(long touchID);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetNumTouchFingers")]
+        public static extern int GetNumTouchFingers(long touchID);
 
-		/**
+        /**
 		 *  \brief Get the finger object of the given touch, with the given index.
 		 *  Returns pointer to Finger.
 		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetTouchFinger")]
-		public static extern IntPtr GetTouchFinger(long touchID, int index);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTouchFinger")]
+        public static extern IntPtr GetTouchFinger(long touchID, int index);
 
-		/* Only available in SDL 2.0.10 or higher. */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetTouchDeviceType")]
-		public static extern TouchDeviceType GetTouchDeviceType(Int64 touchID);
-
-		#endregion
+        /* Only available in SDL 2.0.10 or higher. */
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTouchDeviceType")]
+        public static extern TouchDeviceType GetTouchDeviceType(Int64 touchID);
     }
+    #endregion
 }
