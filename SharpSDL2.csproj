@@ -5,7 +5,7 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<EnableDefaultItems>false</EnableDefaultItems>
-		<AssemblyName>SDL2-CS</AssemblyName>
+		<AssemblyName>SharpSDL2</AssemblyName>
 		<RootNamespace>SDL2</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
