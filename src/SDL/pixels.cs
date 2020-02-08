@@ -427,42 +427,42 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Color
 		{
-			public byte r;
-			public byte g;
-			public byte b;
-			public byte a;
+			public byte R;
+			public byte G;
+			public byte B;
+			public byte A;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Palette
 		{
-			public int ncolors;
-			public IntPtr colors;
-			public int version;
-			public int refcount;
+			public int Ncolors;
+			public IntPtr Colors;
+			public int Version;
+			public int Refcount;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct PixelFormat
 		{
-			public uint format;
-			public IntPtr palette; // Palette*
+			public uint Format;
+			public IntPtr Palette; // Palette*
 			public byte BitsPerPixel;
 			public byte BytesPerPixel;
-			public uint Rmask;
-			public uint Gmask;
-			public uint Bmask;
-			public uint Amask;
-			public byte Rloss;
-			public byte Gloss;
-			public byte Bloss;
-			public byte Aloss;
-			public byte Rshift;
-			public byte Gshift;
-			public byte Bshift;
-			public byte Ashift;
-			public int refcount;
-			public IntPtr next; // PixelFormat*
+			public uint RMask;
+			public uint GMask;
+			public uint BMask;
+			public uint AMask;
+			public byte RLoss;
+			public byte GLoss;
+			public byte BLoss;
+			public byte ALoss;
+			public byte RShift;
+			public byte GShift;
+			public byte BShift;
+			public byte AShift;
+			public int RefCount;
+			public IntPtr Next; // PixelFormat*
 		}
 
 		/* IntPtr refers to an PixelFormat* */
