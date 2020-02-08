@@ -67,7 +67,7 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public unsafe struct HapticDirection
 		{
-			public byte type;
+			public byte Type;
 			public fixed int dir[3];
 		}
 
@@ -75,143 +75,143 @@ namespace SDL2
 		public struct HapticConstant
 		{
 			// Header
-			public ushort type;
-			public HapticDirection direction;
+			public ushort Type;
+			public HapticDirection Direction;
 			// Replay
-			public uint length;
-			public ushort delay;
+			public uint Length;
+			public ushort Delay;
 			// Trigger
-			public ushort button;
-			public ushort interval;
+			public ushort Button;
+			public ushort Interval;
 			// Constant
-			public short level;
+			public short Level;
 			// Envelope
-			public ushort attack_length;
-			public ushort attack_level;
-			public ushort fade_length;
-			public ushort fade_level;
+			public ushort AttackLength;
+			public ushort AttackLevel;
+			public ushort FadeLength;
+			public ushort FadeLevel;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct HapticPeriodic
 		{
 			// Header
-			public ushort type;
-			public HapticDirection direction;
+			public ushort Type;
+			public HapticDirection Direction;
 			// Replay
-			public uint length;
-			public ushort delay;
+			public uint Length;
+			public ushort Delay;
 			// Trigger
-			public ushort button;
-			public ushort interval;
+			public ushort Button;
+			public ushort Interval;
 			// Periodic
-			public ushort period;
-			public short magnitude;
-			public short offset;
-			public ushort phase;
+			public ushort Period;
+			public short Magnitude;
+			public short Offset;
+			public ushort Phase;
 			// Envelope
-			public ushort attack_length;
-			public ushort attack_level;
-			public ushort fade_length;
-			public ushort fade_level;
+			public ushort AttackLength;
+			public ushort AttackLevel;
+			public ushort FadeLength;
+			public ushort FadeLevel;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public unsafe struct HapticCondition
 		{
 			// Header
-			public ushort type;
-			public HapticDirection direction;
+			public ushort Type;
+			public HapticDirection Direction;
 			// Replay
-			public uint length;
-			public ushort delay;
+			public uint Length;
+			public ushort Delay;
 			// Trigger
-			public ushort button;
-			public ushort interval;
+			public ushort Button;
+			public ushort Interval;
 			// Condition
-			public fixed ushort right_sat[3];
-			public fixed ushort left_sat[3];
-			public fixed short right_coeff[3];
-			public fixed short left_coeff[3];
-			public fixed ushort deadband[3];
-			public fixed short center[3];
+			public fixed ushort RightSat[3];
+			public fixed ushort LeftSat[3];
+			public fixed short RightCoeff[3];
+			public fixed short LeftCoeff[3];
+			public fixed ushort Deadband[3];
+			public fixed short Center[3];
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct HapticRamp
 		{
 			// Header
-			public ushort type;
-			public HapticDirection direction;
+			public ushort Type;
+			public HapticDirection Direction;
 			// Replay
-			public uint length;
-			public ushort delay;
+			public uint Length;
+			public ushort Delay;
 			// Trigger
-			public ushort button;
-			public ushort interval;
+			public ushort Button;
+			public ushort Interval;
 			// Ramp
-			public short start;
-			public short end;
+			public short Start;
+			public short End;
 			// Envelope
-			public ushort attack_length;
-			public ushort attack_level;
-			public ushort fade_length;
-			public ushort fade_level;
+			public ushort AttackLength;
+			public ushort AttackLevel;
+			public ushort FadeLength;
+			public ushort FadeLevel;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct HapticLeftRight
 		{
 			// Header
-			public ushort type;
+			public ushort Type;
 			// Replay
-			public uint length;
+			public uint Length;
 			// Rumble
-			public ushort large_magnitude;
-			public ushort small_magnitude;
+			public ushort LargeMagnitude;
+			public ushort SmallMagnitude;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct HapticCustom
 		{
 			// Header
-			public ushort type;
-			public HapticDirection direction;
+			public ushort Type;
+			public HapticDirection Direction;
 			// Replay
-			public uint length;
-			public ushort delay;
+			public uint Length;
+			public ushort Delay;
 			// Trigger
-			public ushort button;
-			public ushort interval;
+			public ushort Button;
+			public ushort Interval;
 			// Custom
-			public byte channels;
-			public ushort period;
-			public ushort samples;
-			public IntPtr data; // Uint16*
+			public byte Channels;
+			public ushort Period;
+			public ushort Samples;
+			public IntPtr Data; // Uint16*
 			// Envelope
-			public ushort attack_length;
-			public ushort attack_level;
-			public ushort fade_length;
-			public ushort fade_level;
+			public ushort AttackLength;
+			public ushort AttackLevel;
+			public ushort FadeLength;
+			public ushort FadeLevel;
 		}
 
 		[StructLayout(LayoutKind.Explicit)]
 		public struct HapticEffect
 		{
 			[FieldOffset(0)]
-			public ushort type;
+			public ushort Type;
 			[FieldOffset(0)]
-			public HapticConstant constant;
+			public HapticConstant Constant;
 			[FieldOffset(0)]
-			public HapticPeriodic periodic;
+			public HapticPeriodic Periodic;
 			[FieldOffset(0)]
-			public HapticCondition condition;
+			public HapticCondition Condition;
 			[FieldOffset(0)]
-			public HapticRamp ramp;
+			public HapticRamp Ramp;
 			[FieldOffset(0)]
-			public HapticLeftRight leftright;
+			public HapticLeftRight LeftRight;
 			[FieldOffset(0)]
-			public HapticCustom custom;
+			public HapticCustom Custom;
 		}
 
 		/* haptic refers to an Haptic* */
