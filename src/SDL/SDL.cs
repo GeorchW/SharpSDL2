@@ -35,40 +35,41 @@ namespace SDL2
 {
     public static partial class SDL
     {
+        #region SDL.h
+        [Flags]
+        public enum InitFlags
+        {
+            Timer = 0x00000001,
+            Audio = 0x00000010,
+            Video = 0x00000020,
+            Joystick = 0x00000200,
+            Haptic = 0x00001000,
+            GameController = 0x00002000,
+            Events = 0x00004000,
+            Sensor = 0x00008000,
+            Noparachute = 0x00100000,
+            Everything = (
+                Timer | Audio | Video |
+                Events | Joystick | Haptic |
+                GameController | Sensor
+            ),
+        }
 
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Init")]
+        public static extern int Init(InitFlags flags);
 
-		#region SDL.h
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_InitSubSystem")]
+        public static extern int InitSubSystem(InitFlags flags);
 
-		public const uint INIT_TIMER =		0x00000001;
-		public const uint INIT_AUDIO =		0x00000010;
-		public const uint INIT_VIDEO =		0x00000020;
-		public const uint INIT_JOYSTICK =		0x00000200;
-		public const uint INIT_HAPTIC =		0x00001000;
-		public const uint INIT_GAMECONTROLLER =	0x00002000;
-		public const uint INIT_EVENTS =		0x00004000;
-		public const uint INIT_SENSOR =		0x00008000;
-		public const uint INIT_NOPARACHUTE =	0x00100000;
-		public const uint INIT_EVERYTHING = (
-			INIT_TIMER | INIT_AUDIO | INIT_VIDEO |
-			INIT_EVENTS | INIT_JOYSTICK | INIT_HAPTIC |
-			INIT_GAMECONTROLLER | INIT_SENSOR
-		);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Quit")]
+        public static extern void Quit();
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_Init")]
-		public static extern int Init(uint flags);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_QuitSubSystem")]
+        public static extern void QuitSubSystem(InitFlags flags);
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_InitSubSystem")]
-		public static extern int InitSubSystem(uint flags);
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WasInit")]
+        public static extern InitFlags WasInit(InitFlags flags);
 
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_Quit")]
-		public static extern void Quit();
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_QuitSubSystem")]
-		public static extern void QuitSubSystem(uint flags);
-
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_WasInit")]
-		public static extern uint WasInit(uint flags);
-
-		#endregion
+        #endregion
     }
 }
