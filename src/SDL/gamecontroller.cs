@@ -41,43 +41,43 @@ namespace SDL2
 
 		public enum GameControllerBindType
 		{
-			CONTROLLER_BINDTYPE_NONE,
-			CONTROLLER_BINDTYPE_BUTTON,
-			CONTROLLER_BINDTYPE_AXIS,
-			CONTROLLER_BINDTYPE_HAT
+			None,
+			Button,
+			Axis,
+			Hat
 		}
 
 		public enum GameControllerAxis
 		{
-			CONTROLLER_AXIS_INVALID = -1,
-			CONTROLLER_AXIS_LEFTX,
-			CONTROLLER_AXIS_LEFTY,
-			CONTROLLER_AXIS_RIGHTX,
-			CONTROLLER_AXIS_RIGHTY,
-			CONTROLLER_AXIS_TRIGGERLEFT,
-			CONTROLLER_AXIS_TRIGGERRIGHT,
-			CONTROLLER_AXIS_MAX
+			Invalid = -1,
+			LeftX,
+			LeftY,
+			RightX,
+			RightY,
+			TriggerLeft,
+			TriggerRight,
+			Max
 		}
 
 		public enum GameControllerButton
 		{
-			CONTROLLER_BUTTON_INVALID = -1,
-			CONTROLLER_BUTTON_A,
-			CONTROLLER_BUTTON_B,
-			CONTROLLER_BUTTON_X,
-			CONTROLLER_BUTTON_Y,
-			CONTROLLER_BUTTON_BACK,
-			CONTROLLER_BUTTON_GUIDE,
-			CONTROLLER_BUTTON_START,
-			CONTROLLER_BUTTON_LEFTSTICK,
-			CONTROLLER_BUTTON_RIGHTSTICK,
-			CONTROLLER_BUTTON_LEFTSHOULDER,
-			CONTROLLER_BUTTON_RIGHTSHOULDER,
-			CONTROLLER_BUTTON_DPAD_UP,
-			CONTROLLER_BUTTON_DPAD_DOWN,
-			CONTROLLER_BUTTON_DPAD_LEFT,
-			CONTROLLER_BUTTON_DPAD_RIGHT,
-			CONTROLLER_BUTTON_MAX,
+			Invalid = -1,
+			A,
+			B,
+			X,
+			Y,
+			Back,
+			Guide,
+			Start,
+			LeftStick,
+			RightStick,
+			LeftShoulder,
+			RightShoulder,
+			DpadUp,
+			DpadDown,
+			DpadLeft,
+			DpadRight,
+			Max,
 		}
 
 		// FIXME: I'd rather this somehow be private...

@@ -42,16 +42,16 @@ namespace SDL2
 		[Flags]
 		public enum MessageBoxFlags : uint
 		{
-			MESSAGEBOX_ERROR =		0x00000010,
-			MESSAGEBOX_WARNING =	0x00000020,
-			MESSAGEBOX_INFORMATION =	0x00000040
+			Error =		0x00000010,
+			Warning =	0x00000020,
+			Information =	0x00000040
 		}
 
 		[Flags]
 		public enum MessageBoxButtonFlags : uint
 		{
-			MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT = 0x00000001,
-			MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = 0x00000002
+			ReturnKeyDefault = 0x00000001,
+			EscapeKeyDefault = 0x00000002
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -78,18 +78,18 @@ namespace SDL2
 
 		public enum MessageBoxColorType
 		{
-			MESSAGEBOX_COLOR_BACKGROUND,
-			MESSAGEBOX_COLOR_TEXT,
-			MESSAGEBOX_COLOR_BUTTON_BORDER,
-			MESSAGEBOX_COLOR_BUTTON_BACKGROUND,
-			MESSAGEBOX_COLOR_BUTTON_SELECTED,
-			MESSAGEBOX_COLOR_MAX
+			Background,
+			Text,
+			ButtonBorder,
+			ButtonBackground,
+			ButtonSelected,
+			Max
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
 		public struct MessageBoxColorScheme
 		{
-			[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = (int)MessageBoxColorType.MESSAGEBOX_COLOR_MAX)]
+			[MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = (int)MessageBoxColorType.Max)]
 				public MessageBoxColor[] colors;
 		}
 

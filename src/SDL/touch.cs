@@ -52,10 +52,10 @@ namespace SDL2
 		/* Only available in SDL 2.0.10 or higher. */
 		public enum TouchDeviceType
 		{
-			TOUCH_DEVICE_INVALID = -1,
-			TOUCH_DEVICE_DIRECT,            /* touch screen with window-relative coordinates */
-			TOUCH_DEVICE_INDIRECT_ABSOLUTE, /* trackpad with absolute device coordinates */
-			TOUCH_DEVICE_INDIRECT_RELATIVE  /* trackpad with screen cursor-relative coordinates */
+			Invalid = -1,
+			Direct,            /* touch screen with window-relative coordinates */
+			IndirectAbsolute, /* trackpad with absolute device coordinates */
+			IndirectRelative  /* trackpad with screen cursor-relative coordinates */
 		}
 
 		/**

@@ -206,9 +206,9 @@ namespace SDL2
 
 		public enum HintPriority
 		{
-			HINT_DEFAULT,
-			HINT_NORMAL,
-			HINT_OVERRIDE
+			Default,
+			Normal,
+			Override
 		}
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_ClearHints")]

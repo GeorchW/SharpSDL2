@@ -124,10 +124,10 @@ namespace SDL2
 
 		public enum WinRT_DeviceFamily
 		{
-			WINRT_DEVICEFAMILY_UNKNOWN,
-			WINRT_DEVICEFAMILY_DESKTOP,
-			WINRT_DEVICEFAMILY_MOBILE,
-			WINRT_DEVICEFAMILY_XBOX
+			Unknown,
+			Desktop,
+			Mobile,
+			Xbox
 		}
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_WinRTGetDeviceFamily")]

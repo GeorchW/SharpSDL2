@@ -43,10 +43,10 @@ namespace SDL2
 
 		public enum SensorType
 		{
-			SENSOR_INVALID = -1,
-			SENSOR_UNKNOWN,
-			SENSOR_ACCEL,
-			SENSOR_GYRO
+			Invalid = -1,
+			Unknown,
+			Accel,
+			Gyro
 		}
 
 		public const float STANDARD_GRAVITY = 9.80665f;

@@ -42,33 +42,33 @@ namespace SDL2
 		[Flags]
 		public enum RendererFlags : uint
 		{
-			RENDERER_SOFTWARE =		0x00000001,
-			RENDERER_ACCELERATED =	0x00000002,
-			RENDERER_PRESENTVSYNC =	0x00000004,
-			RENDERER_TARGETTEXTURE =	0x00000008
+			Software =		0x00000001,
+			Accelerated =	0x00000002,
+			PresentVSync =	0x00000004,
+			TargetTexture =	0x00000008
 		}
 
 		[Flags]
 		public enum RendererFlip
 		{
-			FLIP_NONE =		0x00000000,
-			FLIP_HORIZONTAL =	0x00000001,
-			FLIP_VERTICAL =	0x00000002
+			None =		0x00000000,
+			Horizontal =	0x00000001,
+			Vertical =	0x00000002
 		}
 
 		public enum TextureAccess
 		{
-			TEXTUREACCESS_STATIC,
-			TEXTUREACCESS_STREAMING,
-			TEXTUREACCESS_TARGET
+			Static,
+			Streaming,
+			Target
 		}
 
 		[Flags]
 		public enum TextureModulate
 		{
-			TEXTUREMODULATE_NONE =		0x00000000,
-			TEXTUREMODULATE_HORIZONTAL =	0x00000001,
-			TEXTUREMODULATE_VERTICAL =		0x00000002
+			None =		0x00000000,
+			Horizontal =	0x00000001,
+			Vertical =		0x00000002
 		}
 
 		[StructLayout(LayoutKind.Sequential)]

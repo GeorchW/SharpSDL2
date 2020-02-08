@@ -41,11 +41,11 @@ namespace SDL2
 
 		public enum PowerState
 		{
-			POWERSTATE_UNKNOWN = 0,
-			POWERSTATE_ON_BATTERY,
-			POWERSTATE_NO_BATTERY,
-			POWERSTATE_CHARGING,
-			POWERSTATE_CHARGED
+			Unknown = 0,
+			OnBattery,
+			NoBattery,
+			Charging,
+			Charged
 		}
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetPowerInfo")]

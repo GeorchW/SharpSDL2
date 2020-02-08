@@ -39,20 +39,20 @@ namespace SDL2
 
 		#region syswm.h
 
-		public enum SYSWM_TYPE
+		public enum SysWmType
 		{
-			SYSWM_UNKNOWN,
-			SYSWM_WINDOWS,
-			SYSWM_X11,
-			SYSWM_DIRECTFB,
-			SYSWM_COCOA,
-			SYSWM_UIKIT,
-			SYSWM_WAYLAND,
-			SYSWM_MIR,
-			SYSWM_WINRT,
-			SYSWM_ANDROID,
-			SYSWM_VIVANTE,
-			SYSWM_OS2
+			Unknown,
+			Windows,
+			X11,
+			Directfb,
+			Cocoa,
+			Uikit,
+			Wayland,
+			Mir,
+			Winrt,
+			Android,
+			Vivante,
+			Os2
 		}
 
 		// FIXME: I wish these weren't public...
@@ -158,7 +158,7 @@ namespace SDL2
 		public struct SysWMinfo
 		{
 			public Version version;
-			public SYSWM_TYPE subsystem;
+			public SysWmType subsystem;
 			public INTERNAL_SysWMDriverUnion info;
 		}
 

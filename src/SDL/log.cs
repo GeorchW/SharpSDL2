@@ -64,9 +64,9 @@ namespace SDL2
 
 		/* Beyond this point is reserved for application use, e.g.
 			enum {
-				LOG_CATEGORY_AWESOME1 = LOG_CATEGORY_CUSTOM,
-				LOG_CATEGORY_AWESOME2,
-				LOG_CATEGORY_AWESOME3,
+				LogCategoryAwesome1 = LogCategoryCustom,
+				LogCategoryAwesome2,
+				LogCategoryAwesome3,
 				...
 			};
 		*/
@@ -75,13 +75,13 @@ namespace SDL2
 
 		public enum LogPriority
 		{
-			LOG_PRIORITY_VERBOSE = 1,
-			LOG_PRIORITY_DEBUG,
-			LOG_PRIORITY_INFO,
-			LOG_PRIORITY_WARN,
-			LOG_PRIORITY_ERROR,
-			LOG_PRIORITY_CRITICAL,
-			NUM_LOG_PRIORITIES
+			Verbose = 1,
+			Debug,
+			Info,
+			Warn,
+			Error,
+			Critical,
+			NumLogPriorities
 		}
 
 		/* userdata refers to a void*, message to a const char* */

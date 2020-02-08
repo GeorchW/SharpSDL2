@@ -51,26 +51,26 @@ namespace SDL2
 
 		public enum JoystickPowerLevel
 		{
-			JOYSTICK_POWER_UNKNOWN = -1,
-			JOYSTICK_POWER_EMPTY,
-			JOYSTICK_POWER_LOW,
-			JOYSTICK_POWER_MEDIUM,
-			JOYSTICK_POWER_FULL,
-			JOYSTICK_POWER_WIRED,
-			JOYSTICK_POWER_MAX
+			Unknown = -1,
+			Empty,
+			Low,
+			Medium,
+			Full,
+			Wired,
+			Max
 		}
 
 		public enum JoystickType
 		{
-			JOYSTICK_TYPE_UNKNOWN,
-			JOYSTICK_TYPE_GAMECONTROLLER,
-			JOYSTICK_TYPE_WHEEL,
-			JOYSTICK_TYPE_ARCADE_STICK,
-			JOYSTICK_TYPE_FLIGHT_STICK,
-			JOYSTICK_TYPE_DANCE_PAD,
-			JOYSTICK_TYPE_GUITAR,
-			JOYSTICK_TYPE_DRUM_KIT,
-			JOYSTICK_TYPE_ARCADE_PAD
+			Unknown,
+			Gamecontroller,
+			Wheel,
+			ArcadeStick,
+			FlightStick,
+			DancePad,
+			Guitar,
+			DrumKit,
+			ArcadePad
 		}
 
 		/* joystick refers to an Joystick*.

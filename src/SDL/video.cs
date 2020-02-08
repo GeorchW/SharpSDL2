@@ -39,131 +39,131 @@ namespace SDL2
 
 		#region video.h
 
-		public enum GLattr
+		public enum GlAttr
 		{
-			GL_RED_SIZE,
-			GL_GREEN_SIZE,
-			GL_BLUE_SIZE,
-			GL_ALPHA_SIZE,
-			GL_BUFFER_SIZE,
-			GL_DOUBLEBUFFER,
-			GL_DEPTH_SIZE,
-			GL_STENCIL_SIZE,
-			GL_ACCUM_RED_SIZE,
-			GL_ACCUM_GREEN_SIZE,
-			GL_ACCUM_BLUE_SIZE,
-			GL_ACCUM_ALPHA_SIZE,
-			GL_STEREO,
-			GL_MULTISAMPLEBUFFERS,
-			GL_MULTISAMPLESAMPLES,
-			GL_ACCELERATED_VISUAL,
-			GL_RETAINED_BACKING,
-			GL_CONTEXT_MAJOR_VERSION,
-			GL_CONTEXT_MINOR_VERSION,
-			GL_CONTEXT_EGL,
-			GL_CONTEXT_FLAGS,
-			GL_CONTEXT_PROFILE_MASK,
-			GL_SHARE_WITH_CURRENT_CONTEXT,
-			GL_FRAMEBUFFER_SRGB_CAPABLE,
-			GL_CONTEXT_RELEASE_BEHAVIOR,
-			GL_CONTEXT_RESET_NOTIFICATION,	/* Only available in 2.0.6 */
-			GL_CONTEXT_NO_ERROR,		/* Only available in 2.0.6 */
+			RedSize,
+			GreenSize,
+			BlueSize,
+			AlphaSize,
+			BufferSize,
+			Doublebuffer,
+			DepthSize,
+			StencilSize,
+			AccumRedSize,
+			AccumGreenSize,
+			AccumBlueSize,
+			AccumAlphaSize,
+			Stereo,
+			Multisamplebuffers,
+			Multisamplesamples,
+			AcceleratedVisual,
+			RetainedBacking,
+			ContextMajorVersion,
+			ContextMinorVersion,
+			ContextEgl,
+			ContextFlags,
+			ContextProfileMask,
+			ShareWithCurrentContext,
+			FramebufferSrgbCapable,
+			ContextReleaseBehavior,
+			ContextResetNotification,	/* Only available in 2.0.6 */
+			ContextNoError,		/* Only available in 2.0.6 */
 		}
 
 		[Flags]
-		public enum GLprofile
+		public enum GlProfile
 		{
-			GL_CONTEXT_PROFILE_CORE				= 0x0001,
-			GL_CONTEXT_PROFILE_COMPATIBILITY	= 0x0002,
-			GL_CONTEXT_PROFILE_ES				= 0x0004
+			Core				= 0x0001,
+			Compatibility	= 0x0002,
+			Es				= 0x0004
 		}
 
 		[Flags]
 		public enum GLcontext
 		{
-			GL_CONTEXT_DEBUG_FLAG				= 0x0001,
-			GL_CONTEXT_FORWARD_COMPATIBLE_FLAG	= 0x0002,
-			GL_CONTEXT_ROBUST_ACCESS_FLAG		= 0x0004,
-			GL_CONTEXT_RESET_ISOLATION_FLAG		= 0x0008
+			DebugFlag				= 0x0001,
+			ForwardCompatibleFlag	= 0x0002,
+			RobustAccessFlag		= 0x0004,
+			ResetIsolationFlag		= 0x0008
 		}
 
 		public enum WindowEventID : byte
 		{
-			WINDOWEVENT_NONE,
-			WINDOWEVENT_SHOWN,
-			WINDOWEVENT_HIDDEN,
-			WINDOWEVENT_EXPOSED,
-			WINDOWEVENT_MOVED,
-			WINDOWEVENT_RESIZED,
-			WINDOWEVENT_SIZE_CHANGED,
-			WINDOWEVENT_MINIMIZED,
-			WINDOWEVENT_MAXIMIZED,
-			WINDOWEVENT_RESTORED,
-			WINDOWEVENT_ENTER,
-			WINDOWEVENT_LEAVE,
-			WINDOWEVENT_FOCUS_GAINED,
-			WINDOWEVENT_FOCUS_LOST,
-			WINDOWEVENT_CLOSE,
+			None,
+			Shown,
+			Hidden,
+			Exposed,
+			Moved,
+			Resized,
+			SizeChanged,
+			Minimized,
+			Maximized,
+			Restored,
+			Enter,
+			Leave,
+			FocusGained,
+			FocusLost,
+			Close,
 			/* Available in 2.0.5 or higher */
-			WINDOWEVENT_TAKE_FOCUS,
-			WINDOWEVENT_HIT_TEST
+			TakeFocus,
+			HitTest
 		}
 
 		public enum DisplayEventID : byte
 		{
-			DISPLAYEVENT_NONE,
-			DISPLAYEVENT_ORIENTATION
+			None,
+			Orientation
 		}
 
 		public enum DisplayOrientation
 		{
-			ORIENTATION_UNKNOWN,
-			ORIENTATION_LANDSCAPE,
-			ORIENTATION_LANDSCAPE_FLIPPED,
-			ORIENTATION_PORTRAIT,
-			ORIENTATION_PORTRAIT_FLIPPED
+			Unknown,
+			Landscape,
+			LandscapeFlipped,
+			Portrait,
+			PortraitFlipped
 		}
 
 		[Flags]
 		public enum WindowFlags : uint
 		{
-			WINDOW_FULLSCREEN =		0x00000001,
-			WINDOW_OPENGL =		0x00000002,
-			WINDOW_SHOWN =		0x00000004,
-			WINDOW_HIDDEN =		0x00000008,
-			WINDOW_BORDERLESS =		0x00000010,
-			WINDOW_RESIZABLE =		0x00000020,
-			WINDOW_MINIMIZED =		0x00000040,
-			WINDOW_MAXIMIZED =		0x00000080,
-			WINDOW_INPUT_GRABBED =	0x00000100,
-			WINDOW_INPUT_FOCUS =	0x00000200,
-			WINDOW_MOUSE_FOCUS =	0x00000400,
-			WINDOW_FULLSCREEN_DESKTOP =
-				(WINDOW_FULLSCREEN | 0x00001000),
-			WINDOW_FOREIGN =		0x00000800,
-			WINDOW_ALLOW_HIGHDPI =	0x00002000,	/* Only available in 2.0.1 */
-			WINDOW_MOUSE_CAPTURE =	0x00004000,	/* Only available in 2.0.4 */
-			WINDOW_ALWAYS_ON_TOP =	0x00008000,	/* Only available in 2.0.5 */
-			WINDOW_SKIP_TASKBAR =	0x00010000,	/* Only available in 2.0.5 */
-			WINDOW_UTILITY =		0x00020000,	/* Only available in 2.0.5 */
-			WINDOW_TOOLTIP =		0x00040000,	/* Only available in 2.0.5 */
-			WINDOW_POPUP_MENU =		0x00080000,	/* Only available in 2.0.5 */
-			WINDOW_VULKAN =		0x10000000,	/* Only available in 2.0.6 */
+			Fullscreen =		0x00000001,
+			OpenGL =		0x00000002,
+			Shown =		0x00000004,
+			Hidden =		0x00000008,
+			Borderless =		0x00000010,
+			Resizable =		0x00000020,
+			Minimized =		0x00000040,
+			Maximized =		0x00000080,
+			InputGrabbed =	0x00000100,
+			InputFocus =	0x00000200,
+			MouseFocus =	0x00000400,
+			FullscreenDesktop =
+				(Fullscreen | 0x00001000),
+			Foreign =		0x00000800,
+			AllowHighdpi =	0x00002000,	/* Only available in 2.0.1 */
+			MouseCapture =	0x00004000,	/* Only available in 2.0.4 */
+			AlwaysOnTop =	0x00008000,	/* Only available in 2.0.5 */
+			SkipTaskbar =	0x00010000,	/* Only available in 2.0.5 */
+			Utility =		0x00020000,	/* Only available in 2.0.5 */
+			Tooltip =		0x00040000,	/* Only available in 2.0.5 */
+			PopupMenu =		0x00080000,	/* Only available in 2.0.5 */
+			Vulkan =		0x10000000,	/* Only available in 2.0.6 */
 		}
 
 		/* Only available in 2.0.4 */
 		public enum HitTestResult
 		{
-			HITTEST_NORMAL,		/* Region is normal. No special properties. */
-			HITTEST_DRAGGABLE,		/* Region can drag entire window. */
-			HITTEST_RESIZE_TOPLEFT,
-			HITTEST_RESIZE_TOP,
-			HITTEST_RESIZE_TOPRIGHT,
-			HITTEST_RESIZE_RIGHT,
-			HITTEST_RESIZE_BOTTOMRIGHT,
-			HITTEST_RESIZE_BOTTOM,
-			HITTEST_RESIZE_BOTTOMLEFT,
-			HITTEST_RESIZE_LEFT
+			Normal,		/* Region is normal. No special properties. */
+			Draggable,		/* Region can drag entire window. */
+			ResizeTopleft,
+			ResizeTop,
+			ResizeTopright,
+			ResizeRight,
+			ResizeBottomright,
+			ResizeBottom,
+			ResizeBottomleft,
+			ResizeLeft
 		}
 
 		public const int WINDOWPOS_UNDEFINED_MASK =	0x1FFF0000;
@@ -551,7 +551,7 @@ namespace SDL2
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GL_GetAttribute")]
 		public static extern int GL_GetAttribute(
-			GLattr attr,
+			GlAttr attr,
 			out int value
 		);
 
@@ -583,13 +583,13 @@ namespace SDL2
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GL_SetAttribute")]
 		public static extern int GL_SetAttribute(
-			GLattr attr,
+			GlAttr attr,
 			int value
 		);
 
 		public static int GL_SetAttribute(
-			GLattr attr,
-			GLprofile profile
+			GlAttr attr,
+			GlProfile profile
 		) {
 			return GL_SetAttribute(attr, (int)profile);
 		}

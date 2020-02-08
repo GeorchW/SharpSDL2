@@ -121,21 +121,33 @@ namespace SDL2
 
 		/* System cursor types */
 		public enum SystemCursor
-		{
-			SYSTEM_CURSOR_ARROW,	// Arrow
-			SYSTEM_CURSOR_IBEAM,	// I-beam
-			SYSTEM_CURSOR_WAIT,		// Wait
-			SYSTEM_CURSOR_CROSSHAIR,	// Crosshair
-			SYSTEM_CURSOR_WAITARROW,	// Small wait cursor (or Wait if not available)
-			SYSTEM_CURSOR_SIZENWSE,	// Double arrow pointing northwest and southeast
-			SYSTEM_CURSOR_SIZENESW,	// Double arrow pointing northeast and southwest
-			SYSTEM_CURSOR_SIZEWE,	// Double arrow pointing west and east
-			SYSTEM_CURSOR_SIZENS,	// Double arrow pointing north and south
-			SYSTEM_CURSOR_SIZEALL,	// Four pointed arrow pointing north, south, east, and west
-			SYSTEM_CURSOR_NO,		// Slashed circle or crossbones
-			SYSTEM_CURSOR_HAND,		// Hand
-			NUM_SYSTEM_CURSORS
-		}
+        {
+            ///<summary>Arrow.</summary>
+            Arrow,
+            ///<summary>I-beam.</summary>
+            IBeam,
+            ///<summary>Wait.</summary>
+            Wait,
+            ///<summary>Crosshair.</summary>
+            CrossHair,
+            ///<summary>Small wait cursor (or Wait if not available).</summary>
+            WaitArrow,
+            ///<summary>Double arrow pointing northwest and southeast.</summary>
+            SizeNwse,
+            ///<summary>Double arrow pointing northeast and southwest.</summary>
+            SizeNesw,
+            ///<summary>Double arrow pointing west and east.</summary>
+            SizeWe,
+            ///<summary>Double arrow pointing north and south.</summary>
+            SizeNs,
+            ///<summary>Four pointed arrow pointing north, south, east, and west.</summary>
+            SizeAll,
+            ///<summary>Slashed circle or crossbones.</summary>
+            No,
+            ///<summary>Hand.</summary>
+            Hand,
+            NumSystemCursors
+        }
 
 		/* Get the window which currently has mouse focus */
 		/* Return value is an Window pointer */

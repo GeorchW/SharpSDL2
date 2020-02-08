@@ -45,9 +45,9 @@ namespace SDL2
 		}
 
 		public static uint DEFINE_PIXELFORMAT(
-			PIXELTYPE_ENUM type,
-			PIXELORDER_ENUM order,
-			PACKEDLAYOUT_ENUM layout,
+			PixelType type,
+			PixelOrder order,
+			PackedLayout layout,
 			byte bits,
 			byte bytes
 		) {
@@ -107,12 +107,12 @@ namespace SDL2
 			{
 				return false;
 			}
-			PIXELTYPE_ENUM pType =
-					(PIXELTYPE_ENUM) PIXELTYPE(format);
+			PixelType pType =
+					(PixelType) PIXELTYPE(format);
 			return (
-				pType == PIXELTYPE_ENUM.PIXELTYPE_INDEX1 ||
-				pType == PIXELTYPE_ENUM.PIXELTYPE_INDEX4 ||
-				pType == PIXELTYPE_ENUM.PIXELTYPE_INDEX8
+				pType == PixelType.Index1 ||
+				pType == PixelType.Index4 ||
+				pType == PixelType.Index8
 			);
 		}
 
@@ -122,13 +122,13 @@ namespace SDL2
 			{
 				return false;
 			}
-			PIXELORDER_ENUM pOrder =
-					(PIXELORDER_ENUM) PIXELORDER(format);
+			PixelOrder pOrder =
+					(PixelOrder) PIXELORDER(format);
 			return (
-				pOrder == PIXELORDER_ENUM.PACKEDORDER_ARGB ||
-				pOrder == PIXELORDER_ENUM.PACKEDORDER_RGBA ||
-				pOrder == PIXELORDER_ENUM.PACKEDORDER_ABGR ||
-				pOrder == PIXELORDER_ENUM.PACKEDORDER_BGRA
+				pOrder == PixelOrder.PackedOrderARGB ||
+				pOrder == PixelOrder.PackedOrderRGBA ||
+				pOrder == PixelOrder.PackedOrderABGR ||
+				pOrder == PixelOrder.PackedOrderBGRA
 			);
 		}
 
@@ -137,270 +137,270 @@ namespace SDL2
 			return (format == 0) && (PIXELFLAG(format) != 1);
 		}
 
-		public enum PIXELTYPE_ENUM
+		public enum PixelType
 		{
-			PIXELTYPE_UNKNOWN,
-			PIXELTYPE_INDEX1,
-			PIXELTYPE_INDEX4,
-			PIXELTYPE_INDEX8,
-			PIXELTYPE_PACKED8,
-			PIXELTYPE_PACKED16,
-			PIXELTYPE_PACKED32,
-			PIXELTYPE_ARRAYU8,
-			PIXELTYPE_ARRAYU16,
-			PIXELTYPE_ARRAYU32,
-			PIXELTYPE_ARRAYF16,
-			PIXELTYPE_ARRAYF32
+			Unknown,
+			Index1,
+			Index4,
+			Index8,
+			Packed8,
+			Packed16,
+			Packed32,
+			Arrayu8,
+			Arrayu16,
+			Arrayu32,
+			Arrayf16,
+			Arrayf32
 		}
 
-		public enum PIXELORDER_ENUM
+		public enum PixelOrder
 		{
-			/* BITMAPORDER */
-			BITMAPORDER_NONE,
-			BITMAPORDER_4321,
-			BITMAPORDER_1234,
-			/* PACKEDORDER */
-			PACKEDORDER_NONE = 0,
-			PACKEDORDER_XRGB,
-			PACKEDORDER_RGBX,
-			PACKEDORDER_ARGB,
-			PACKEDORDER_RGBA,
-			PACKEDORDER_XBGR,
-			PACKEDORDER_BGRX,
-			PACKEDORDER_ABGR,
-			PACKEDORDER_BGRA,
-			/* ARRAYORDER */
-			ARRAYORDER_NONE = 0,
-			ARRAYORDER_RGB,
-			ARRAYORDER_RGBA,
-			ARRAYORDER_ARGB,
-			ARRAYORDER_BGR,
-			ARRAYORDER_BGRA,
-			ARRAYORDER_ABGR
+			/* BitmapOrder */
+			BitmapOrderNone,
+			BitmapOrder4321,
+			BitmapOrder1234,
+			/* PackedOrder */
+			PackedOrderNone = 0,
+			PackedOrderXRGB,
+			PackedOrderRGBX,
+			PackedOrderARGB,
+			PackedOrderRGBA,
+			PackedOrderXBGR,
+			PackedOrderBGRX,
+			PackedOrderABGR,
+			PackedOrderBGRA,
+			/* ArrayOrder */
+			ArrayOrderNone = 0,
+			ArrayOrderRGB,
+			ArrayOrderRGBA,
+			ArrayOrderARGB,
+			ArrayOrderBGR,
+			ArrayOrderBGRA,
+			ArrayOrderABGR
 		}
 
-		public enum PACKEDLAYOUT_ENUM
+		public enum PackedLayout
 		{
-			PACKEDLAYOUT_NONE,
-			PACKEDLAYOUT_332,
-			PACKEDLAYOUT_4444,
-			PACKEDLAYOUT_1555,
-			PACKEDLAYOUT_5551,
-			PACKEDLAYOUT_565,
-			PACKEDLAYOUT_8888,
-			PACKEDLAYOUT_2101010,
-			PACKEDLAYOUT_1010102
+			PackedLayoutNone,
+			PackedLayout332,
+			PackedLayout4444,
+			PackedLayout1555,
+			PackedLayout5551,
+			PackedLayout565,
+			PackedLayout8888,
+			PackedLayout2101010,
+			PackedLayout1010102
 		}
 
 		public static readonly uint PIXELFORMAT_UNKNOWN = 0;
 		public static readonly uint PIXELFORMAT_INDEX1LSB =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_INDEX1,
-				PIXELORDER_ENUM.BITMAPORDER_4321,
+				PixelType.Index1,
+				PixelOrder.BitmapOrder4321,
 				0,
 				1, 0
 			);
 		public static readonly uint PIXELFORMAT_INDEX1MSB =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_INDEX1,
-				PIXELORDER_ENUM.BITMAPORDER_1234,
+				PixelType.Index1,
+				PixelOrder.BitmapOrder1234,
 				0,
 				1, 0
 			);
 		public static readonly uint PIXELFORMAT_INDEX4LSB =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_INDEX4,
-				PIXELORDER_ENUM.BITMAPORDER_4321,
+				PixelType.Index4,
+				PixelOrder.BitmapOrder4321,
 				0,
 				4, 0
 			);
 		public static readonly uint PIXELFORMAT_INDEX4MSB =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_INDEX4,
-				PIXELORDER_ENUM.BITMAPORDER_1234,
+				PixelType.Index4,
+				PixelOrder.BitmapOrder1234,
 				0,
 				4, 0
 			);
 		public static readonly uint PIXELFORMAT_INDEX8 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_INDEX8,
+				PixelType.Index8,
 				0,
 				0,
 				8, 1
 			);
 		public static readonly uint PIXELFORMAT_RGB332 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED8,
-				PIXELORDER_ENUM.PACKEDORDER_XRGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_332,
+				PixelType.Packed8,
+				PixelOrder.PackedOrderXRGB,
+				PackedLayout.PackedLayout332,
 				8, 1
 			);
 		public static readonly uint PIXELFORMAT_RGB444 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_XRGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_4444,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderXRGB,
+				PackedLayout.PackedLayout4444,
 				12, 2
 			);
 		public static readonly uint PIXELFORMAT_RGB555 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_XRGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_1555,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderXRGB,
+				PackedLayout.PackedLayout1555,
 				15, 2
 			);
 		public static readonly uint PIXELFORMAT_BGR555 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_INDEX1,
-				PIXELORDER_ENUM.BITMAPORDER_4321,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_1555,
+				PixelType.Index1,
+				PixelOrder.BitmapOrder4321,
+				PackedLayout.PackedLayout1555,
 				15, 2
 			);
 		public static readonly uint PIXELFORMAT_ARGB4444 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_ARGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_4444,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderARGB,
+				PackedLayout.PackedLayout4444,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_RGBA4444 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_RGBA,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_4444,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderRGBA,
+				PackedLayout.PackedLayout4444,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_ABGR4444 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_ABGR,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_4444,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderABGR,
+				PackedLayout.PackedLayout4444,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_BGRA4444 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_BGRA,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_4444,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderBGRA,
+				PackedLayout.PackedLayout4444,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_ARGB1555 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_ARGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_1555,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderARGB,
+				PackedLayout.PackedLayout1555,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_RGBA5551 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_RGBA,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_5551,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderRGBA,
+				PackedLayout.PackedLayout5551,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_ABGR1555 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_ABGR,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_1555,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderABGR,
+				PackedLayout.PackedLayout1555,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_BGRA5551 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_BGRA,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_5551,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderBGRA,
+				PackedLayout.PackedLayout5551,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_RGB565 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_XRGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_565,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderXRGB,
+				PackedLayout.PackedLayout565,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_BGR565 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED16,
-				PIXELORDER_ENUM.PACKEDORDER_XBGR,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_565,
+				PixelType.Packed16,
+				PixelOrder.PackedOrderXBGR,
+				PackedLayout.PackedLayout565,
 				16, 2
 			);
 		public static readonly uint PIXELFORMAT_RGB24 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_ARRAYU8,
-				PIXELORDER_ENUM.ARRAYORDER_RGB,
+				PixelType.Arrayu8,
+				PixelOrder.ArrayOrderRGB,
 				0,
 				24, 3
 			);
 		public static readonly uint PIXELFORMAT_BGR24 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_ARRAYU8,
-				PIXELORDER_ENUM.ARRAYORDER_BGR,
+				PixelType.Arrayu8,
+				PixelOrder.ArrayOrderBGR,
 				0,
 				24, 3
 			);
 		public static readonly uint PIXELFORMAT_RGB888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_XRGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderXRGB,
+				PackedLayout.PackedLayout8888,
 				24, 4
 			);
 		public static readonly uint PIXELFORMAT_RGBX8888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_RGBX,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderRGBX,
+				PackedLayout.PackedLayout8888,
 				24, 4
 			);
 		public static readonly uint PIXELFORMAT_BGR888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_XBGR,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderXBGR,
+				PackedLayout.PackedLayout8888,
 				24, 4
 			);
 		public static readonly uint PIXELFORMAT_BGRX8888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_BGRX,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderBGRX,
+				PackedLayout.PackedLayout8888,
 				24, 4
 			);
 		public static readonly uint PIXELFORMAT_ARGB8888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_ARGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderARGB,
+				PackedLayout.PackedLayout8888,
 				32, 4
 			);
 		public static readonly uint PIXELFORMAT_RGBA8888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_RGBA,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderRGBA,
+				PackedLayout.PackedLayout8888,
 				32, 4
 			);
 		public static readonly uint PIXELFORMAT_ABGR8888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_ABGR,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderABGR,
+				PackedLayout.PackedLayout8888,
 				32, 4
 			);
 		public static readonly uint PIXELFORMAT_BGRA8888 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_BGRA,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_8888,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderBGRA,
+				PackedLayout.PackedLayout8888,
 				32, 4
 			);
 		public static readonly uint PIXELFORMAT_ARGB2101010 =
 			DEFINE_PIXELFORMAT(
-				PIXELTYPE_ENUM.PIXELTYPE_PACKED32,
-				PIXELORDER_ENUM.PACKEDORDER_ARGB,
-				PACKEDLAYOUT_ENUM.PACKEDLAYOUT_2101010,
+				PixelType.Packed32,
+				PixelOrder.PackedOrderARGB,
+				PackedLayout.PackedLayout2101010,
 				32, 4
 			);
 		public static readonly uint PIXELFORMAT_YV12 =

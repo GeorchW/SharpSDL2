@@ -118,9 +118,9 @@ namespace SDL2
 
 		public enum AudioStatus
 		{
-			AUDIO_STOPPED,
-			AUDIO_PLAYING,
-			AUDIO_PAUSED
+			Stopped,
+			Playing,
+			Paused
 		}
 
 		[StructLayout(LayoutKind.Sequential)]

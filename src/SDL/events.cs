@@ -50,107 +50,107 @@ namespace SDL2
 		/* The types of events that can be delivered. */
 		public enum EventType : uint
 		{
-			FIRSTEVENT =		0,
+			FirstEvent =		0,
 
 			/* Application events */
-			QUIT = 			0x100,
+			Quit = 			0x100,
 
-			/* iOS/Android/WinRT app events */
-			APP_TERMINATING,
-			APP_LOWMEMORY,
-			APP_WILLENTERBACKGROUND,
-			APP_DIDENTERBACKGROUND,
-			APP_WILLENTERFOREGROUND,
-			APP_DIDENTERFOREGROUND,
+			/* iOs/Android/WinRt app events */
+			AppTerminating,
+			AppLowMemory,
+			AppWillEnterBackground,
+			AppDidEnterBackground,
+			AppWillEnterForeground,
+			AppDidEnterForeground,
 
 			/* Display events */
-			/* Only available in SDL 2.0.9 or higher */
-			DISPLAYEVENT =		0x150,
+			/* Only available in Sdl 2.0.9 or higher */
+			DisplayEvent =		0x150,
 
 			/* Window events */
-			WINDOWEVENT = 		0x200,
-			SYSWMEVENT,
+			WindowEvent = 		0x200,
+			SyswmEvent,
 
 			/* Keyboard events */
-			KEYDOWN = 			0x300,
-			KEYUP,
-			TEXTEDITING,
-			TEXTINPUT,
-			KEYMAPCHANGED,
+			KeyDown = 			0x300,
+			KeyUp,
+			TextEditing,
+			TextInput,
+			KeymapChanged,
 
 			/* Mouse events */
-			MOUSEMOTION = 		0x400,
-			MOUSEBUTTONDOWN,
-			MOUSEBUTTONUP,
-			MOUSEWHEEL,
+			MouseMotion = 		0x400,
+			MouseButtonDown,
+			MouseButtonUp,
+			MouseWheel,
 
 			/* Joystick events */
-			JOYAXISMOTION =		0x600,
-			JOYBALLMOTION,
-			JOYHATMOTION,
-			JOYBUTTONDOWN,
-			JOYBUTTONUP,
-			JOYDEVICEADDED,
-			JOYDEVICEREMOVED,
+			JoyAxisMotion =		0x600,
+			JoyBallMotion,
+			JoyHatMotion,
+			JoyButtonDown,
+			JoyButtonUp,
+			JoyDeviceAdded,
+			JoyDeviceRemoved,
 
 			/* Game controller events */
-			CONTROLLERAXISMOTION = 	0x650,
-			CONTROLLERBUTTONDOWN,
-			CONTROLLERBUTTONUP,
-			CONTROLLERDEVICEADDED,
-			CONTROLLERDEVICEREMOVED,
-			CONTROLLERDEVICEREMAPPED,
+			ControllerAxisMotion = 	0x650,
+			ControllerButtonDown,
+			ControllerButtonUp,
+			ControllerDeviceAdded,
+			ControllerDeviceRemoved,
+			ControllerDeviceRemapped,
 
 			/* Touch events */
-			FINGERDOWN = 		0x700,
-			FINGERUP,
-			FINGERMOTION,
+			FingerDown = 		0x700,
+			FingerUp,
+			FingerMotion,
 
 			/* Gesture events */
-			DOLLARGESTURE =		0x800,
-			DOLLARRECORD,
-			MULTIGESTURE,
+			DollarGesture =		0x800,
+			DollarRecord,
+			MultiGesture,
 
 			/* Clipboard events */
-			CLIPBOARDUPDATE =		0x900,
+			ClipboardUpdate =		0x900,
 
 			/* Drag and drop events */
-			DROPFILE =			0x1000,
+			DropFile =			0x1000,
 			/* Only available in 2.0.4 or higher */
-			DROPTEXT,
-			DROPBEGIN,
-			DROPCOMPLETE,
+			DropText,
+			DropBegin,
+			DropComplete,
 
 			/* Audio hotplug events */
-			/* Only available in SDL 2.0.4 or higher */
-			AUDIODEVICEADDED =		0x1100,
-			AUDIODEVICEREMOVED,
+			/* Only available in Sdl 2.0.4 or higher */
+			AudioDeviceAdded =		0x1100,
+			AudioDeviceRemoved,
 
 			/* Sensor events */
-			/* Only available in SDL 2.0.9 or higher */
-			SENSORUPDATE =		0x1200,
+			/* Only available in Sdl 2.0.9 or higher */
+			SensorUpdate =		0x1200,
 
 			/* Render events */
-			/* Only available in SDL 2.0.2 or higher */
-			RENDER_TARGETS_RESET =	0x2000,
-			/* Only available in SDL 2.0.4 or higher */
-			RENDER_DEVICE_RESET,
+			/* Only available in Sdl 2.0.2 or higher */
+			RenderTargetsReset =	0x2000,
+			/* Only available in Sdl 2.0.4 or higher */
+			RenderDeviceReset,
 
-			/* Events USEREVENT through LASTEVENT are for
+			/* Events Userevent through Lastevent are for
 			 * your use, and should be allocated with
 			 * RegisterEvents()
 			 */
-			USEREVENT =			0x8000,
+			UserEvent =			0x8000,
 
 			/* The last event, used for bouding arrays. */
-			LASTEVENT =			0xFFFF
+			LastEvent =			0xFfff
 		}
 
 		/* Only available in 2.0.4 or higher */
 		public enum MouseWheelDirection : uint
 		{
-			MOUSEWHEEL_NORMAL,
-			MOUSEWHEEL_FLIPPED
+			Normal,
+			Flipped
 		}
 
 		/* Fields shared by every event */
@@ -588,18 +588,18 @@ namespace SDL2
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_PumpEvents")]
 		public static extern void PumpEvents();
 
-		public enum eventaction
+		public enum EventAction
 		{
-			ADDEVENT,
-			PEEKEVENT,
-			GETEVENT
+			Add,
+			Peek,
+			Get
 		}
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_PeepEvents")]
 		public static extern int PeepEvents(
 			[Out] Event[] events,
 			int numevents,
-			eventaction action,
+			EventAction action,
 			EventType minType,
 			EventType maxType
 		);
