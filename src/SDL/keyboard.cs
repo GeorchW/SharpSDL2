@@ -42,10 +42,11 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Keysym
 		{
-			public Scancode scancode;
-			public Keycode sym;
-			public Keymod mod; /* UInt16 */
-			public UInt32 unicode; /* Deprecated */
+			public Scancode Scancode;
+			public Keycode Sym;
+			public Keymod Mod;
+			[Obsolete]
+			public UInt32 Unicode;
 		}
 
 		/* Get the window which has kbd focus */
