@@ -25,7 +25,7 @@ Current status of the refactored wrappers:
 | SDL2       | ok        |
 | SDL2_ttf   | started   |
 | SDL2_image | unstarted |
-| SDL2_ttf   | unstarted |
+| SDL2_mixer | unstarted |
 
 About the Visual Studio Debugger
 --------------------------------
