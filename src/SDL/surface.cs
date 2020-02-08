@@ -47,18 +47,18 @@ namespace SDL2
 		[StructLayout(LayoutKind.Sequential)]
 		public struct Surface
 		{
-			public uint flags;
-			public IntPtr format; // PixelFormat*
-			public int w;
-			public int h;
-			public int pitch;
-			public IntPtr pixels; // void*
-			public IntPtr userdata; // void*
-			public int locked;
-			public IntPtr lock_data; // void*
-			public Rect clip_rect;
-			public IntPtr map; // BlitMap*
-			public int refcount;
+			public uint Flags;
+			public IntPtr Format; // PixelFormat*
+			public int W;
+			public int H;
+			public int Pitch;
+			public IntPtr Pixels; // void*
+			public IntPtr Userdata; // void*
+			public int Locked;
+			public IntPtr LockData; // void*
+			public Rect ClipRect;
+			public IntPtr Map; // BlitMap*
+			public int Refcount;
 		}
 
 		/* surface refers to an Surface* */
@@ -69,7 +69,7 @@ namespace SDL2
 				surface,
 				typeof(Surface)
 			);
-			return (sur.flags & RLEACCEL) != 0;
+			return (sur.Flags & RLEACCEL) != 0;
 		}
 
 		/* src and dst refer to an Surface* */
