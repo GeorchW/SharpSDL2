@@ -78,49 +78,49 @@ namespace SDL2
 
 		/* Get the current state of the mouse */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetMouseState")]
-		public static extern UInt32 GetMouseState(out int x, out int y);
+		public static extern MouseButtonMask GetMouseState(out int x, out int y);
 
 		/* Get the current state of the mouse */
 		/* This overload allows for passing NULL to x */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetMouseState")]
-		public static extern UInt32 GetMouseState(IntPtr x, out int y);
+		public static extern MouseButtonMask GetMouseState(IntPtr x, out int y);
 
 		/* Get the current state of the mouse */
 		/* This overload allows for passing NULL to y */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetMouseState")]
-		public static extern UInt32 GetMouseState(out int x, IntPtr y);
+		public static extern MouseButtonMask GetMouseState(out int x, IntPtr y);
 
 		/* Get the current state of the mouse */
 		/* This overload allows for passing NULL to both x and y */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetMouseState")]
-		public static extern UInt32 GetMouseState(IntPtr x, IntPtr y);
+		public static extern MouseButtonMask GetMouseState(IntPtr x, IntPtr y);
 
 		/* Get the current state of the mouse, in relation to the desktop */
 		/* Only available in 2.0.4 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetGlobalMouseState")]
-		public static extern UInt32 GetGlobalMouseState(out int x, out int y);
+		public static extern MouseButtonMask GetGlobalMouseState(out int x, out int y);
 
 		/* Get the current state of the mouse, in relation to the desktop */
 		/* Only available in 2.0.4 */
 		/* This overload allows for passing NULL to x */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetGlobalMouseState")]
-		public static extern UInt32 GetGlobalMouseState(IntPtr x, out int y);
+		public static extern MouseButtonMask GetGlobalMouseState(IntPtr x, out int y);
 
 		/* Get the current state of the mouse, in relation to the desktop */
 		/* Only available in 2.0.4 */
 		/* This overload allows for passing NULL to y */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetGlobalMouseState")]
-		public static extern UInt32 GetGlobalMouseState(out int x, IntPtr y);
+		public static extern MouseButtonMask GetGlobalMouseState(out int x, IntPtr y);
 
 		/* Get the current state of the mouse, in relation to the desktop */
 		/* Only available in 2.0.4 */
 		/* This overload allows for passing NULL to both x and y */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetGlobalMouseState")]
-		public static extern UInt32 GetGlobalMouseState(IntPtr x, IntPtr y);
+		public static extern MouseButtonMask GetGlobalMouseState(IntPtr x, IntPtr y);
 
 		/* Get the mouse state with relative coords*/
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_GetRelativeMouseState")]
-		public static extern UInt32 GetRelativeMouseState(out int x, out int y);
+		public static extern MouseButtonMask GetRelativeMouseState(out int x, out int y);
 
 		/* Set the mouse cursor's position (within a window) */
 		/* window is an Window pointer */
@@ -191,22 +191,14 @@ namespace SDL2
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_ShowCursor")]
 		public static extern int ShowCursor(int toggle);
 
-		public static uint BUTTON(uint X)
-		{
-			// If only there were a better way of doing this in C#
-			return (uint) (1 << ((int) X - 1));
-		}
-
-		public const uint BUTTON_LEFT =	1;
-		public const uint BUTTON_MIDDLE =	2;
-		public const uint BUTTON_RIGHT =	3;
-		public const uint BUTTON_X1 =	4;
-		public const uint BUTTON_X2 =	5;
-		public static readonly UInt32 BUTTON_LMASK =	BUTTON(BUTTON_LEFT);
-		public static readonly UInt32 BUTTON_MMASK =	BUTTON(BUTTON_MIDDLE);
-		public static readonly UInt32 BUTTON_RMASK =	BUTTON(BUTTON_RIGHT);
-		public static readonly UInt32 BUTTON_X1MASK =	BUTTON(BUTTON_X1);
-		public static readonly UInt32 BUTTON_X2MASK =	BUTTON(BUTTON_X2);
+        public enum MouseButtonMask
+        {
+            Left = 1 << 0,
+            Middle = 1 << 1,
+            Right = 1 << 2,
+            X1 = 1 << 3,
+            X2 = 1 << 4
+        }
 
 		#endregion
     }
