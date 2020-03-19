@@ -37,6 +37,7 @@ namespace SDL2
 
     public static partial class SDL
     {
+        /// <summary>Gets the name of the platform.</summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_GetPlatform", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_GetPlatform();
         public static string GetPlatform()

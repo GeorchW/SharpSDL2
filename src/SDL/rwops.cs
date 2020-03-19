@@ -97,6 +97,12 @@ namespace SDL2
         );
 
         /* IntPtr refers to an RWops* */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// IntPtr refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_RWFromFile", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_RWFromFile(
             byte[] file,
@@ -114,32 +120,74 @@ namespace SDL2
         }
 
         /* IntPtr refers to an RWops* */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// IntPtr refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AllocRW")]
         public static extern IntPtr AllocRW();
 
         /* area refers to an RWops* */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// area refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_FreeRW")]
         public static extern void FreeRW(IntPtr area);
 
         /* fp refers to a void* */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// fp refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWFromFP")]
         public static extern IntPtr RWFromFP(IntPtr fp, bool autoclose);
 
         /* mem refers to a void*, IntPtr to an RWops* */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// mem refers to a void*, IntPtr to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWFromMem")]
         public static extern IntPtr RWFromMem(IntPtr mem, int size);
 
         /* mem refers to a const void*, IntPtr to an RWops* */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// mem refers to a const void*, IntPtr to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWFromConstMem")]
         public static extern IntPtr RWFromConstMem(IntPtr mem, int size);
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops* */
+        /// <summary>
+        /// Return the size of the file in this rwops, or -1 if unknown
+        /// 
+        /// Binding info:
+        /// context refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWsize")]
         public static extern long RWsize(IntPtr context);
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops* */
+        /// <summary>
+        /// Seek to  relative to , one of stdio's whence values: RW_SEEK_SET, RW_SEEK_CUR, RW_SEEK_END
+        /// 
+        /// Binding info:
+        /// context refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWseek")]
         public static extern long RWseek(
             IntPtr context,
@@ -149,11 +197,23 @@ namespace SDL2
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops* */
+        /// <summary>
+        /// Return the current offset in the data stream, or -1 on error.
+        /// 
+        /// Binding info:
+        /// context refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWtell")]
         public static extern long RWtell(IntPtr context);
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops*, ptr refers to a void* */
+        /// <summary>
+        /// Read up to  objects each of size  from the data stream to the area pointed at by .
+        /// 
+        /// Binding info:
+        /// context refers to an RWops*, ptr refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWread")]
         public static extern long RWread(
             IntPtr context,
@@ -164,6 +224,12 @@ namespace SDL2
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops*, ptr refers to a const void* */
+        /// <summary>
+        /// Write exactly  objects each of size  from the area pointed at by  to data stream.
+        /// 
+        /// Binding info:
+        /// context refers to an RWops*, ptr refers to a const void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWwrite")]
         public static extern long RWwrite(
             IntPtr context,
@@ -174,6 +240,12 @@ namespace SDL2
 
         /* Read endian functions */
 
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// Read endian functions
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadU8")]
         public static extern byte ReadU8(IntPtr src);
 
@@ -197,6 +269,12 @@ namespace SDL2
 
         /* Write endian functions */
 
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// Write endian functions
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteU8")]
         public static extern uint WriteU8(IntPtr dst, byte value);
 
@@ -220,6 +298,12 @@ namespace SDL2
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops* */
+        /// <summary>
+        /// Close and free an allocated  structure.
+        /// 
+        /// Binding info:
+        /// context refers to an RWops*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RWclose")]
         public static extern long RWclose(IntPtr context);
 
@@ -228,6 +312,14 @@ namespace SDL2
 		 * datasize refers to a size_t*
 		 * IntPtr refers to a void*
 		*/
+        /// <summary>
+        /// Load an entire file.The data is allocated with a zero byte at the end (null terminated)If  is not NULL, it is filled with the size of the data read.If  is non-zero, the stream will be closed after being read.The data should be freed with .
+        /// 
+        /// Binding info:
+        /// file refers to a const char*
+        /// datasize refers to a size_t*
+        /// IntPtr refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_LoadFile")]
         public static extern IntPtr LoadFile(IntPtr file, IntPtr datasize);
     }

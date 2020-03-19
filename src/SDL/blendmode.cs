@@ -71,6 +71,19 @@ namespace SDL2
     public static partial class SDL
     {
         /* Only available in 2.0.6 */
+        /// <summary>
+        /// Create a custom blend mode, which may or may not be supported by a given renderer. 
+        /// The result of the blend mode operation will be: dstRGB = dstRGB * dstColorFactor colorOperation srcRGB * srcColorFactor and dstA = dstA * dstAlphaFactor alphaOperation srcA * srcAlphaFactor
+        /// 
+        /// Binding info:
+        /// Only available in 2.0.6
+        /// </summary>
+        /// <param name="srcColorFactor">source color factor</param>
+        /// <param name="dstColorFactor">destination color factor</param>
+        /// <param name="colorOperation">color operation</param>
+        /// <param name="srcAlphaFactor">source alpha factor</param>
+        /// <param name="dstAlphaFactor">destination alpha factor</param>
+        /// <param name="alphaOperation">alpha operation</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ComposeCustomBlendMode")]
         public static extern BlendMode ComposeCustomBlendMode(
             BlendFactor srcColorFactor,

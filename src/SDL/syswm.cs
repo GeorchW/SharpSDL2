@@ -163,6 +163,15 @@ namespace SDL2
     public static partial class SDL
     {
         /* window refers to an Window* */
+        /// <summary>
+        /// This function allows access to driver-dependent window information. 
+        /// You typically use this function like this:
+        /// 
+        /// Binding info:
+        /// window refers to an Window*
+        /// </summary>
+        /// <param name="window">The window about which information is being requested</param>
+        /// <param name="info">This structure must be initialized with the SDL version, and is then filled in with information about the given window.</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetWindowWMInfo")]
         public static extern bool GetWindowWMInfo(
             IntPtr window,

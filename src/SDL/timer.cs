@@ -49,18 +49,42 @@ namespace SDL2
         }
 
         /* Delays the thread's processing based on the milliseconds parameter */
+        /// <summary>
+        /// Wait a specified number of milliseconds before returning.
+        /// 
+        /// Binding info:
+        /// Delays the thread's processing based on the milliseconds parameter
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Delay")]
         public static extern void Delay(UInt32 ms);
 
         /* Returns the milliseconds that have passed since SDL was initialized */
+        /// <summary>
+        /// Get the number of milliseconds since the SDL library initialization.
+        /// 
+        /// Binding info:
+        /// Returns the milliseconds that have passed since SDL was initialized
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTicks")]
         public static extern UInt32 GetTicks();
 
         /* Get the current value of the high resolution counter */
+        /// <summary>
+        /// Get the current value of the high resolution counter.
+        /// 
+        /// Binding info:
+        /// Get the current value of the high resolution counter
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPerformanceCounter")]
         public static extern UInt64 GetPerformanceCounter();
 
         /* Get the count per second of the high resolution counter */
+        /// <summary>
+        /// Get the count per second of the high resolution counter.
+        /// 
+        /// Binding info:
+        /// Get the count per second of the high resolution counter
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPerformanceFrequency")]
         public static extern UInt64 GetPerformanceFrequency();
 
@@ -69,6 +93,12 @@ namespace SDL2
         public delegate UInt32 TimerCallback(UInt32 interval, IntPtr param);
 
         /* int refers to an TimerID, param to a void* */
+        /// <summary>
+        /// Add a new timer to the pool of timers already running.
+        /// 
+        /// Binding info:
+        /// int refers to an TimerID, param to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AddTimer")]
         public static extern int AddTimer(
             UInt32 interval,
@@ -77,6 +107,12 @@ namespace SDL2
         );
 
         /* id refers to an TimerID */
+        /// <summary>
+        /// Remove a timer knowing its ID.
+        /// 
+        /// Binding info:
+        /// id refers to an TimerID
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RemoveTimer")]
         public static extern bool RemoveTimer(int id);
     }

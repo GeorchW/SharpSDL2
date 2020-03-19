@@ -80,6 +80,7 @@ namespace SDL2
                     (p.Y < (r.Y + r.H)));
         }
 
+        /// <summary>Calculate a minimal rectangle enclosing a set of points.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_EnclosePoints")]
         public static extern bool EnclosePoints(
             [In] Point[] points,
@@ -88,12 +89,14 @@ namespace SDL2
             out Rect result
         );
 
+        /// <summary>Determine whether two rectangles intersect.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasIntersection")]
         public static extern bool HasIntersection(
             in Rect A,
             in Rect B
         );
 
+        /// <summary>Calculate the intersection of two rectangles.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_IntersectRect")]
         public static extern bool IntersectRect(
             in Rect A,
@@ -101,6 +104,7 @@ namespace SDL2
             out Rect result
         );
 
+        /// <summary>Calculate the intersection of a rectangle and line segment.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_IntersectRectAndLine")]
         public static extern bool IntersectRectAndLine(
             in Rect rect,
@@ -126,6 +130,7 @@ namespace SDL2
                     (a.H == b.H));
         }
 
+        /// <summary>Calculate the union of two rectangles.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_UnionRect")]
         public static extern void UnionRect(
             in Rect A,

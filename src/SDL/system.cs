@@ -55,6 +55,12 @@ namespace SDL2
     {
         /* Windows */
 
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// Windows
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SetWindowsMessageHook")]
         public static extern void SetWindowsMessageHook(
             WindowsMessageHook callback,
@@ -62,6 +68,10 @@ namespace SDL2
         );
 
         /* iOS */
+        /// <summary>
+        /// Binding info:
+        /// iOS
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_iPhoneSetAnimationCallback")]
         public static extern int iPhoneSetAnimationCallback(
             IntPtr window, /* Window* */
@@ -78,10 +88,18 @@ namespace SDL2
         public const int ANDROID_EXTERNAL_STORAGE_WRITE = 0x02;
 
         /* IntPtr refers to a JNIEnv* */
+        /// <summary>
+        /// Binding info:
+        /// IntPtr refers to a JNIEnv*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AndroidGetJNIEnv")]
         public static extern IntPtr AndroidGetJNIEnv();
 
         /* IntPtr refers to a jobject */
+        /// <summary>
+        /// Binding info:
+        /// IntPtr refers to a jobject
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AndroidGetActivity")]
         public static extern IntPtr AndroidGetActivity();
 
@@ -123,9 +141,14 @@ namespace SDL2
         /* WinRT */
 
 
+        /// <summary>
+        /// Binding info:
+        /// WinRT
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WinRTGetDeviceFamily")]
         public static extern WinRT_DeviceFamily WinRTGetDeviceFamily();
 
+        /// <summary>Return true if the current device is a tablet.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_IsTablet")]
         public static extern bool IsTablet();
     }

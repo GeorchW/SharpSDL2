@@ -607,9 +607,19 @@ namespace SDL2
         public const int TEXTINPUTEVENT_TEXT_SIZE = 32;
 
         /* Pump the event loop, getting events from the input devices*/
+        /// <summary>
+        /// Pumps the event loop, gathering events from the input devices.This function updates the event queue and internal input device state.This should only be run in the thread that sets the video mode.
+        /// 
+        /// Binding info:
+        /// Pump the event loop, getting events from the input devices
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_PumpEvents")]
         public static extern void PumpEvents();
 
+        /// <summary>
+        /// Checks the event queue for messages and optionally returns them.If  is , up to  events will be added to the back of the event queue.If  is , up to  events at the front of the event queue, within the specified minimum and maximum type, will be returned and will not be removed from the queue.If  is , up to  events at the front of the event queue, within the specified minimum and maximum type, will be returned and will be removed from the queue.
+        /// This function is thread-safe.
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_PeepEvents")]
         public static extern int PeepEvents(
             [Out] Event[] events,
@@ -620,6 +630,12 @@ namespace SDL2
         );
 
         /* Checks to see if certain events are in the event queue */
+        /// <summary>
+        /// Checks to see if certain event types are in the event queue.
+        /// 
+        /// Binding info:
+        /// Checks to see if certain events are in the event queue
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasEvent")]
         public static extern bool HasEvent(EventType type);
 
@@ -630,6 +646,12 @@ namespace SDL2
         );
 
         /* Clears events from the event queue */
+        /// <summary>
+        /// This function clears events from the event queue This function only affects currently queued events. If you want to make sure that all pending OS events are flushed, you can call  on the main thread immediately before the flush call.
+        /// 
+        /// Binding info:
+        /// Clears events from the event queue
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_FlushEvent")]
         public static extern void FlushEvent(EventType type);
 
@@ -640,23 +662,58 @@ namespace SDL2
         );
 
         /* Polls for currently pending events */
+        /// <summary>
+        /// Polls for currently pending events.
+        /// 
+        /// Binding info:
+        /// Polls for currently pending events
+        /// </summary>
+        /// <param name="event">If not NULL, the next event is removed from the queue and stored in that area.</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_PollEvent")]
         public static extern int PollEvent(out Event _event);
 
         /* Waits indefinitely for the next event */
+        /// <summary>
+        /// Waits indefinitely for the next available event.
+        /// 
+        /// Binding info:
+        /// Waits indefinitely for the next event
+        /// </summary>
+        /// <param name="event">If not NULL, the next event is removed from the queue and stored in that area.</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WaitEvent")]
         public static extern int WaitEvent(out Event _event);
 
         /* Waits until the specified timeout (in ms) for the next event
 		 */
+        /// <summary>
+        /// Waits until the specified timeout (in milliseconds) for the next available event.
+        /// 
+        /// Binding info:
+        /// Waits until the specified timeout (in ms) for the next event
+        /// </summary>
+        /// <param name="event">If not NULL, the next event is removed from the queue and stored in that area.</param>
+        /// <param name="timeout">The timeout (in milliseconds) to wait for next event.</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WaitEventTimeout")]
         public static extern int WaitEventTimeout(out Event _event, int timeout);
 
         /* Add an event to the event queue */
+        /// <summary>
+        /// Add an event to the event queue.
+        /// 
+        /// Binding info:
+        /// Add an event to the event queue
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_PushEvent")]
         public static extern int PushEvent(ref Event _event);
 
         /* userdata refers to a void* */
+        /// <summary>
+        /// Sets up a filter to process all events before they change internal state and are posted to the internal event queue.The filter is prototyped as: If the filter returns 1, then the event will be added to the internal queue. If it returns 0, then the event will be dropped from the queue, but the internal state will still be updated. This allows selective filtering of dynamically arriving events.
+        /// There is one caveat when dealing with the  event type. The event filter is only called when the window manager desires to close the application window. If the event filter returns 1, then the window will be closed, otherwise the window will remain open if possible.If the quit event is generated by an interrupt signal, it will bypass the internal queue and be delivered to the application at the next event poll.
+        /// 
+        /// Binding info:
+        /// userdata refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SetEventFilter")]
         public static extern void SetEventFilter(
             EventFilter filter,
@@ -691,6 +748,12 @@ namespace SDL2
         }
 
         /* userdata refers to a void* */
+        /// <summary>
+        /// Add a function which is called when an event is added to the queue.
+        /// 
+        /// Binding info:
+        /// userdata refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AddEventWatch")]
         public static extern void AddEventWatch(
             EventFilter filter,
@@ -698,6 +761,12 @@ namespace SDL2
         );
 
         /* userdata refers to a void* */
+        /// <summary>
+        /// Remove an event watch function added with
+        /// 
+        /// Binding info:
+        /// userdata refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_DelEventWatch")]
         public static extern void DelEventWatch(
             EventFilter filter,
@@ -705,6 +774,12 @@ namespace SDL2
         );
 
         /* userdata refers to a void* */
+        /// <summary>
+        /// Run the filter function on the current event queue, removing any events for which the filter returns 0.
+        /// 
+        /// Binding info:
+        /// userdata refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_FilterEvents")]
         public static extern void FilterEvents(
             EventFilter filter,
@@ -718,6 +793,12 @@ namespace SDL2
         public const int ENABLE = 1;
 
         /* This function allows you to enable/disable certain events */
+        /// <summary>
+        /// This function allows you to set the state of processing certain events.
+        /// 
+        /// Binding info:
+        /// This function allows you to enable/disable certain events
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_EventState")]
         public static extern byte EventState(EventType type, int state);
 
@@ -728,6 +809,12 @@ namespace SDL2
         }
 
         /* Allocate a set of user-defined events */
+        /// <summary>
+        /// This function allocates a set of user-defined events, and returns the beginning event number for that set of events.If there aren't enough user-defined events left, this function returns (Uint32)-1
+        /// 
+        /// Binding info:
+        /// Allocate a set of user-defined events
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_RegisterEvents")]
         public static extern UInt32 RegisterEvents(int numevents);
         #endregion

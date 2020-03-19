@@ -39,10 +39,15 @@ namespace SDL2
 
     public static partial class SDL
     {
+        /// <summary>This is called by the real SDL main function to let the rest of the library know that initialization was done properly.Calling this yourself without knowing what you're doing can cause crashes and hard to diagnose problems with your application.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SetMainReady")]
         public static extern void SetMainReady();
 
         /* Use this function with UWP to call your C# Main() function! */
+        /// <summary>
+        /// Binding info:
+        /// Use this function with UWP to call your C# Main() function!
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WinRTRunApp")]
         public static extern int WinRTRunApp(
             MainFunction mainFunction,
@@ -52,6 +57,11 @@ namespace SDL2
         /* Use this function with iOS to call your C# Main() function!
 		 * Only available in SDL 2.0.10 or higher.
 		 */
+        /// <summary>
+        /// Binding info:
+        /// Use this function with iOS to call your C# Main() function!
+        /// Only available in SDL 2.0.10 or higher.
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_UIKitRunApp")]
         public static extern int UIKitRunApp(
             int argc,

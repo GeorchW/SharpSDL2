@@ -47,6 +47,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// 
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_SetError", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_SetError(byte[] fmtAndArglist);
         public static void SetError(string fmtAndArglist)

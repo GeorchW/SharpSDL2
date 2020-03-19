@@ -116,6 +116,9 @@ namespace SDL2
     public static partial class SDL
     {
 
+        /// <summary>Create a modal message box.</summary>
+        /// <param name="messageboxdata">The SDL_MessageBoxData structure with title, text, etc.</param>
+        /// <param name="buttonid">The pointer to which user id of hit button should be copied.</param>
         [DllImport(nativeLibName, EntryPoint = "SDL_ShowMessageBox", CallingConvention = CallingConvention.Cdecl)]
         private static extern int INTERNAL_ShowMessageBox(in INTERNAL_MessageBoxData messageboxdata, out int buttonid);
 
@@ -179,6 +182,16 @@ namespace SDL2
         }
 
         /* window refers to an Window* */
+        /// <summary>
+        /// Create a simple modal message box.
+        /// 
+        /// Binding info:
+        /// window refers to an Window*
+        /// </summary>
+        /// <param name="flags">SDL_MessageBoxFlags</param>
+        /// <param name="title">UTF-8 title text</param>
+        /// <param name="message">UTF-8 message text</param>
+        /// <param name="window">The parent window, or NULL for no parent</param>
         [DllImport(nativeLibName, EntryPoint = "SDL_ShowSimpleMessageBox", CallingConvention = CallingConvention.Cdecl)]
         private static extern int INTERNAL_ShowSimpleMessageBox(
             MessageBoxFlags flags,

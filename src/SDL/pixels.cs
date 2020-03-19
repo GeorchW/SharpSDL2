@@ -465,13 +465,26 @@ namespace SDL2
     {
 
         /* IntPtr refers to an PixelFormat* */
+        /// <summary>
+        /// Create an SDL_PixelFormat structure from a pixel format enum.
+        /// 
+        /// Binding info:
+        /// IntPtr refers to an PixelFormat*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AllocFormat")]
         public static extern IntPtr AllocFormat(uint pixel_format);
 
         /* IntPtr refers to an Palette* */
+        /// <summary>
+        /// Create a palette structure with the specified number of color entries.
+        /// 
+        /// Binding info:
+        /// IntPtr refers to an Palette*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AllocPalette")]
         public static extern IntPtr AllocPalette(int ncolors);
 
+        /// <summary>Calculate a 256 entry gamma ramp for a gamma value.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_CalculateGammaRamp")]
         public static extern void CalculateGammaRamp(
             float gamma,
@@ -480,13 +493,26 @@ namespace SDL2
         );
 
         /* format refers to an PixelFormat* */
+        /// <summary>
+        /// Free an SDL_PixelFormat structure.
+        /// 
+        /// Binding info:
+        /// format refers to an PixelFormat*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_FreeFormat")]
         public static extern void FreeFormat(IntPtr format);
 
         /* palette refers to an Palette* */
+        /// <summary>
+        /// Free a palette created with SDL_AllocPalette().
+        /// 
+        /// Binding info:
+        /// palette refers to an Palette*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_FreePalette")]
         public static extern void FreePalette(IntPtr palette);
 
+        /// <summary>Get the human readable name of a pixel format.</summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_GetPixelFormatName", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_GetPixelFormatName(
             uint format
@@ -499,6 +525,12 @@ namespace SDL2
         }
 
         /* format refers to an PixelFormat* */
+        /// <summary>
+        /// Get the RGB components from a pixel of the specified format.
+        /// 
+        /// Binding info:
+        /// format refers to an PixelFormat*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetRGB")]
         public static extern void GetRGB(
             uint pixel,
@@ -509,6 +541,12 @@ namespace SDL2
         );
 
         /* format refers to an PixelFormat* */
+        /// <summary>
+        /// Get the RGBA components from a pixel of the specified format.
+        /// 
+        /// Binding info:
+        /// format refers to an PixelFormat*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetRGBA")]
         public static extern void GetRGBA(
             uint pixel,
@@ -520,6 +558,12 @@ namespace SDL2
         );
 
         /* format refers to an PixelFormat* */
+        /// <summary>
+        /// Maps an RGB triple to an opaque pixel value for a given pixel format.
+        /// 
+        /// Binding info:
+        /// format refers to an PixelFormat*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_MapRGB")]
         public static extern uint MapRGB(
             IntPtr format,
@@ -529,6 +573,12 @@ namespace SDL2
         );
 
         /* format refers to an PixelFormat* */
+        /// <summary>
+        /// Maps an RGBA quadruple to a pixel value for a given pixel format.
+        /// 
+        /// Binding info:
+        /// format refers to an PixelFormat*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_MapRGBA")]
         public static extern uint MapRGBA(
             IntPtr format,
@@ -538,6 +588,7 @@ namespace SDL2
             byte a
         );
 
+        /// <summary>Convert a bpp and RGBA masks to an enumerated pixel format.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_MasksToPixelFormatEnum")]
         public static extern uint MasksToPixelFormatEnum(
             int bpp,
@@ -547,6 +598,7 @@ namespace SDL2
             uint Amask
         );
 
+        /// <summary>Convert one of the enumerated pixel formats to a bpp and RGBA masks.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_PixelFormatEnumToMasks")]
         public static extern bool PixelFormatEnumToMasks(
             uint format,
@@ -558,6 +610,16 @@ namespace SDL2
         );
 
         /* palette refers to an Palette* */
+        /// <summary>
+        /// Set a range of colors in a palette.
+        /// 
+        /// Binding info:
+        /// palette refers to an Palette*
+        /// </summary>
+        /// <param name="palette">The palette to modify.</param>
+        /// <param name="colors">An array of colors to copy into the palette.</param>
+        /// <param name="firstcolor">The index of the first palette entry to modify.</param>
+        /// <param name="ncolors">The number of entries to modify.</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SetPaletteColors")]
         public static extern int SetPaletteColors(
             IntPtr palette,
@@ -567,6 +629,12 @@ namespace SDL2
         );
 
         /* format and palette refer to an PixelFormat* and Palette* */
+        /// <summary>
+        /// Set the palette for a pixel format structure.
+        /// 
+        /// Binding info:
+        /// format and palette refer to an PixelFormat* and Palette*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SetPixelFormatPalette")]
         public static extern int SetPixelFormatPalette(
             IntPtr format,

@@ -75,9 +75,17 @@ namespace SDL2
             return (COMPILEDVERSION >= VERSIONNUM(X, Y, Z));
         }
 
+        /// <summary>
+        /// Get the version of SDL that is linked against your program. 
+        /// If you are linking to SDL dynamically, then it is possible that the current version will be different than the version you compiled against. This function returns the current version, while  is a macro that tells you what version you compiled with.This function may be called safely at any time, even before .
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetVersion")]
         public static extern void GetVersion(out Version ver);
 
+        /// <summary>
+        /// Get the code revision of SDL that is linked against your program. 
+        /// Returns an arbitrary string (a hash value) uniquely identifying the exact revision of the SDL library in use, and is only useful in comparing against other revisions. It is NOT an incrementing number.
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_GetRevision", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_GetRevision();
         public static string GetRevision()
@@ -85,6 +93,10 @@ namespace SDL2
             return UTF8_ToManaged(INTERNAL_GetRevision());
         }
 
+        /// <summary>
+        /// Get the revision number of SDL that is linked against your program. 
+        /// Returns a number uniquely identifying the exact revision of the SDL library in use. It is an incrementing number based on commits to hg.libsdl.org.
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetRevisionNumber")]
         public static extern int GetRevisionNumber();
     }

@@ -55,18 +55,23 @@ namespace SDL2
 
     public static partial class SDL
     {
+        /// <summary>This function initializes the subsystems specified by</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Init")]
         public static extern int Init(InitFlags flags);
 
+        /// <summary>This function initializes specific SDL subsystemsSubsystem initialization is ref-counted, you must call  for each  to correctly shutdown a subsystem manually (or call  to force shutdown). If a subsystem is already loaded then this call will increase the ref-count and return.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_InitSubSystem")]
         public static extern int InitSubSystem(InitFlags flags);
 
+        /// <summary>This function cleans up all initialized subsystems. You should call it upon all exit conditions.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Quit")]
         public static extern void Quit();
 
+        /// <summary>This function cleans up specific SDL subsystems</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_QuitSubSystem")]
         public static extern void QuitSubSystem(InitFlags flags);
 
+        /// <summary>This function returns a mask of the specified subsystems which have previously been initialized.If  is 0, it returns a mask of all initialized subsystems.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WasInit")]
         public static extern InitFlags WasInit(InitFlags flags);
     }

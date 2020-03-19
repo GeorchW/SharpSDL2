@@ -211,9 +211,14 @@ namespace SDL2
     public static partial class SDL
     {
 
+        /// <summary>
+        /// Clear all hints. 
+        /// This function is called during  to free stored hints.
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ClearHints")]
         public static extern void ClearHints();
 
+        /// <summary>Get a hint.</summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_GetHint", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_GetHint(byte[] name);
         public static string GetHint(string name)
@@ -225,6 +230,7 @@ namespace SDL2
             );
         }
 
+        /// <summary>Set a hint with normal priority.</summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_SetHint", CallingConvention = CallingConvention.Cdecl)]
         private static extern bool INTERNAL_SetHint(
             byte[] name,
@@ -238,6 +244,10 @@ namespace SDL2
             );
         }
 
+        /// <summary>
+        /// Set a hint with a specific priority. 
+        /// The priority controls the behavior when setting a hint that already has a value. Hints will replace existing hints of their priority and lower. Environment variables are considered to have override priority.
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_SetHintWithPriority", CallingConvention = CallingConvention.Cdecl)]
         private static extern bool INTERNAL_SetHintWithPriority(
             byte[] name,
@@ -258,6 +268,12 @@ namespace SDL2
         }
 
         /* Available in 2.0.5 or higher */
+        /// <summary>
+        /// Get a hint.
+        /// 
+        /// Binding info:
+        /// Available in 2.0.5 or higher
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_GetHintBoolean", CallingConvention = CallingConvention.Cdecl)]
         private static extern bool INTERNAL_GetHintBoolean(
             byte[] name,

@@ -93,6 +93,12 @@ namespace SDL2
     public static partial class SDL
     {
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_CATEGORY_APPLICATION and SDL_LOG_PRIORITY_INFO.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_Log", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_Log(byte[] fmtAndArglist);
         public static void Log(string fmtAndArglist)
@@ -103,6 +109,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_PRIORITY_VERBOSE.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogVerbose", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogVerbose(
             LogCategory category,
@@ -120,6 +132,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_PRIORITY_DEBUG.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogDebug", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogDebug(
             LogCategory category,
@@ -137,6 +155,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_PRIORITY_INFO.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogInfo", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogInfo(
             LogCategory category,
@@ -154,6 +178,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_PRIORITY_WARN.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogWarn", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogWarn(
             LogCategory category,
@@ -171,6 +201,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_PRIORITY_ERROR.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogError", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogError(
             LogCategory category,
@@ -188,6 +224,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with SDL_LOG_PRIORITY_CRITICAL.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogCritical", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogCritical(
             LogCategory category,
@@ -205,6 +247,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with the specified category and priority.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogMessage", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogMessage(
             LogCategory category,
@@ -225,6 +273,12 @@ namespace SDL2
         }
 
         /* Use string.Format for arglists */
+        /// <summary>
+        /// Log a message with the specified category and priority.
+        /// 
+        /// Binding info:
+        /// Use string.Format for arglists
+        /// </summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_LogMessageV", CallingConvention = CallingConvention.Cdecl)]
         private static extern void INTERNAL_LogMessageV(
             LogCategory category,
@@ -244,22 +298,26 @@ namespace SDL2
             );
         }
 
+        /// <summary>Get the priority of a particular log category.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_LogGetPriority")]
         public static extern LogPriority LogGetPriority(
             LogCategory category
         );
 
+        /// <summary>Set the priority of a particular log category.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_LogSetPriority")]
         public static extern void LogSetPriority(
             LogCategory category,
             LogPriority priority
         );
 
+        /// <summary>Set the priority of all log categories.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_LogSetAllPriority")]
         public static extern void LogSetAllPriority(
             LogPriority priority
         );
 
+        /// <summary>Reset all priorities to default.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_LogResetPriorities")]
         public static extern void LogResetPriorities();
 
@@ -293,6 +351,12 @@ namespace SDL2
         }
 
         /* userdata refers to a void* */
+        /// <summary>
+        /// This function allows you to replace the default log output function with one of your own.
+        /// 
+        /// Binding info:
+        /// userdata refers to a void*
+        /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_LogSetOutputFunction")]
         public static extern void LogSetOutputFunction(
             LogOutputFunction callback,

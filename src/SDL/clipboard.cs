@@ -36,9 +36,11 @@ namespace SDL2
     #region clipboard.h
     public static partial class SDL
     {
+        /// <summary>Returns a flag indicating whether the clipboard exists and contains a text string that is non-empty.</summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_HasClipboardText")]
         public static extern bool HasClipboardText();
 
+        /// <summary>Get UTF-8 text from the clipboard, which must be freed with SDL_free()</summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_GetClipboardText", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr INTERNAL_GetClipboardText();
         public static string GetClipboardText()
@@ -46,6 +48,7 @@ namespace SDL2
             return UTF8_ToManaged(INTERNAL_GetClipboardText(), true);
         }
 
+        /// <summary>Put UTF-8 text into the clipboard.</summary>
         [DllImport(nativeLibName, EntryPoint = "SDL_SetClipboardText", CallingConvention = CallingConvention.Cdecl)]
         private static extern int INTERNAL_SetClipboardText(
             byte[] text
