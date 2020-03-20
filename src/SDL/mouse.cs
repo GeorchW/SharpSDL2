@@ -76,6 +76,14 @@ namespace SDL2
         X1 = 1 << 3,
         X2 = 1 << 4
     }
+    public enum MouseButton
+    {
+        Left = 1,
+        Middle = 2,
+        Right = 3,
+        X1 = 4,
+        X2 = 5
+    }
     public static partial class SDL
     {
 
