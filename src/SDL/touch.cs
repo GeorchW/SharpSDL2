@@ -116,7 +116,7 @@ namespace SDL2
         /// Only available in SDL 2.0.10 or higher.
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTouchDeviceType")]
-        public static extern TouchDeviceType GetTouchDeviceType(Int64 touchID);
+        public static extern TouchDeviceType GetTouchDeviceType(long touchID);
     }
     #endregion
 }

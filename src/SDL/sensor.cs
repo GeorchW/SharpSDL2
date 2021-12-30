@@ -86,7 +86,7 @@ namespace SDL2
         /// This can be called before any sensors are opened.
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetDeviceInstanceID")]
-        public static extern Int32 SensorGetDeviceInstanceID(int device_index);
+        public static extern int SensorGetDeviceInstanceID(int device_index);
 
         /* IntPtr refers to an Sensor* */
         /// <summary>
@@ -108,7 +108,7 @@ namespace SDL2
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorFromInstanceID")]
         public static extern IntPtr SensorFromInstanceID(
-            Int32 instance_id
+            int instance_id
         );
 
         /* sensor refers to an Sensor* */
@@ -156,7 +156,7 @@ namespace SDL2
         /// sensor refers to an Sensor*
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_SensorGetInstanceID")]
-        public static extern Int32 SensorGetInstanceID(IntPtr sensor);
+        public static extern int SensorGetInstanceID(IntPtr sensor);
 
         /* sensor refers to an Sensor* */
         /// <summary>

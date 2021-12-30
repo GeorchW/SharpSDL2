@@ -52,7 +52,7 @@ namespace SDL2
 		 */
 		public const int MajorVersion =	2;
 		public const int MinorVersion =	0;
-		public const int PatchLevel =		2;
+        public const int PatchLevel   = 2;
 
 		/* In C, you can redefine this value before including SDL_mixer.h.
 		 * We're not going to allow this in SDL2#, since the value of this

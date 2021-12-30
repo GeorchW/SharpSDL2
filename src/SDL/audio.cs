@@ -417,7 +417,7 @@ namespace SDL2
         public static extern int QueueAudio(
             uint dev,
             IntPtr data,
-            UInt32 len
+            uint len
         );
 
         /* dev refers to an AudioDeviceID, data to a void* */
@@ -448,7 +448,7 @@ namespace SDL2
         /// </summary>
         /// <param name="dev">The device ID of which we will query queued audio size.</param>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetQueuedAudioSize")]
-        public static extern UInt32 GetQueuedAudioSize(uint dev);
+        public static extern uint GetQueuedAudioSize(uint dev);
 
         /* dev refers to an AudioDeviceID */
         /* Only available in 2.0.4 */
