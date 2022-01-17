@@ -90,9 +90,9 @@ namespace SDL2
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_JoystickRumble")]
         public static extern int JoystickRumble(
             IntPtr joystick,
-            UInt16 low_frequency_rumble,
-            UInt16 high_frequency_rumble,
-            UInt32 duration_ms
+            ushort low_frequency_rumble,
+            ushort high_frequency_rumble,
+            uint duration_ms
         );
 
         /* joystick refers to an Joystick* */

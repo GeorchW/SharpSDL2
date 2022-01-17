@@ -43,9 +43,9 @@ namespace SDL2
         /* Compare tick values, return true if A has passed B. Introduced in SDL 2.0.1,
 		 * but does not require it (it was a macro).
 		 */
-        public static bool TICKS_PASSED(UInt32 A, UInt32 B)
+        public static bool TICKS_PASSED(uint A, uint B)
         {
-            return ((Int32)(B - A) <= 0);
+            return ((int)(B - A) <= 0);
         }
 
         /* Delays the thread's processing based on the milliseconds parameter */
@@ -56,7 +56,7 @@ namespace SDL2
         /// Delays the thread's processing based on the milliseconds parameter
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_Delay")]
-        public static extern void Delay(UInt32 ms);
+        public static extern void Delay(uint ms);
 
         /* Returns the milliseconds that have passed since SDL was initialized */
         /// <summary>
@@ -66,7 +66,7 @@ namespace SDL2
         /// Returns the milliseconds that have passed since SDL was initialized
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetTicks")]
-        public static extern UInt32 GetTicks();
+        public static extern uint GetTicks();
 
         /* Get the current value of the high resolution counter */
         /// <summary>
@@ -76,7 +76,7 @@ namespace SDL2
         /// Get the current value of the high resolution counter
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPerformanceCounter")]
-        public static extern UInt64 GetPerformanceCounter();
+        public static extern ulong GetPerformanceCounter();
 
         /* Get the count per second of the high resolution counter */
         /// <summary>
@@ -86,11 +86,11 @@ namespace SDL2
         /// Get the count per second of the high resolution counter
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetPerformanceFrequency")]
-        public static extern UInt64 GetPerformanceFrequency();
+        public static extern ulong GetPerformanceFrequency();
 
         /* param refers to a void* */
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate UInt32 TimerCallback(UInt32 interval, IntPtr param);
+        public delegate uint TimerCallback(uint interval, IntPtr param);
 
         /* int refers to an TimerID, param to a void* */
         /// <summary>
@@ -101,7 +101,7 @@ namespace SDL2
         /// </summary>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_AddTimer")]
         public static extern int AddTimer(
-            UInt32 interval,
+            uint interval,
             TimerCallback callback,
             IntPtr param
         );

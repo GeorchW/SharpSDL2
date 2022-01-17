@@ -44,7 +44,7 @@ namespace SDL2
         public IntPtr Write;
         public IntPtr Close;
 
-        public UInt32 Type;
+        public uint Type;
 
         /* NOTE: This isn't the full structure since
          * the native RWops contains a hidden union full of
@@ -58,12 +58,12 @@ namespace SDL2
         public const int RW_SEEK_CUR = 1;
         public const int RW_SEEK_END = 2;
 
-        public const UInt32 RWOPS_UNKNOWN = 0; /* Unknown stream type */
-        public const UInt32 RWOPS_WINFILE = 1; /* Win32 file */
-        public const UInt32 RWOPS_STDFILE = 2; /* Stdio file */
-        public const UInt32 RWOPS_JNIFILE = 3; /* Android asset */
-        public const UInt32 RWOPS_MEMORY = 4; /* Memory stream */
-        public const UInt32 RWOPS_MEMORY_RO = 5; /* Read-Only memory stream */
+        public const uint RWOPS_UNKNOWN = 0; /* Unknown stream type */
+        public const uint RWOPS_WINFILE = 1; /* Win32 file */
+        public const uint RWOPS_STDFILE = 2; /* Stdio file */
+        public const uint RWOPS_JNIFILE = 3; /* Android asset */
+        public const uint RWOPS_MEMORY = 4; /* Memory stream */
+        public const uint RWOPS_MEMORY_RO = 5; /* Read-Only memory stream */
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate long SDLRWopsSizeCallback(IntPtr context);
@@ -250,22 +250,22 @@ namespace SDL2
         public static extern byte ReadU8(IntPtr src);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadLE16")]
-        public static extern UInt16 ReadLE16(IntPtr src);
+        public static extern ushort ReadLE16(IntPtr src);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadBE16")]
-        public static extern UInt16 ReadBE16(IntPtr src);
+        public static extern ushort ReadBE16(IntPtr src);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadLE32")]
-        public static extern UInt32 ReadLE32(IntPtr src);
+        public static extern uint ReadLE32(IntPtr src);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadBE32")]
-        public static extern UInt32 ReadBE32(IntPtr src);
+        public static extern uint ReadBE32(IntPtr src);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadLE64")]
-        public static extern UInt64 ReadLE64(IntPtr src);
+        public static extern ulong ReadLE64(IntPtr src);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_ReadBE64")]
-        public static extern UInt64 ReadBE64(IntPtr src);
+        public static extern ulong ReadBE64(IntPtr src);
 
         /* Write endian functions */
 
@@ -279,22 +279,22 @@ namespace SDL2
         public static extern uint WriteU8(IntPtr dst, byte value);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteLE16")]
-        public static extern uint WriteLE16(IntPtr dst, UInt16 value);
+        public static extern uint WriteLE16(IntPtr dst, ushort value);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteBE16")]
-        public static extern uint WriteBE16(IntPtr dst, UInt16 value);
+        public static extern uint WriteBE16(IntPtr dst, ushort value);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteLE32")]
-        public static extern uint WriteLE32(IntPtr dst, UInt32 value);
+        public static extern uint WriteLE32(IntPtr dst, uint value);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteBE32")]
-        public static extern uint WriteBE32(IntPtr dst, UInt32 value);
+        public static extern uint WriteBE32(IntPtr dst, uint value);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteLE64")]
-        public static extern uint WriteLE64(IntPtr dst, UInt64 value);
+        public static extern uint WriteLE64(IntPtr dst, ulong value);
 
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_WriteBE64")]
-        public static extern uint WriteBE64(IntPtr dst, UInt64 value);
+        public static extern uint WriteBE64(IntPtr dst, ulong value);
 
         /* Only available in SDL 2.0.10 or higher. */
         /* context refers to an RWops* */

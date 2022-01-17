@@ -514,9 +514,9 @@ namespace SDL2
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GameControllerRumble")]
         public static extern int GameControllerRumble(
             IntPtr gamecontroller,
-            UInt16 low_frequency_rumble,
-            UInt16 high_frequency_rumble,
-            UInt32 duration_ms
+            ushort low_frequency_rumble,
+            ushort high_frequency_rumble,
+            uint duration_ms
         );
 
         /* gamecontroller refers to an GameController* */

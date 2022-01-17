@@ -41,7 +41,7 @@ namespace SDL2
         public Keycode Sym;
         public Keymod Mod;
         [Obsolete]
-        public UInt32 Unicode;
+        public uint Unicode;
     }
     public static partial class SDL
     {
