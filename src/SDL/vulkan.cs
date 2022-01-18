@@ -29,6 +29,8 @@
 
 #region Using Statements
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
@@ -47,12 +49,22 @@ namespace SDL2
 		/// </summary>
 		/// <param name="path">The platform dependent Vulkan loader library name, or NULL.</param>
 		[DllImport(nativeLibName, EntryPoint = "SDL_Vulkan_LoadLibrary", CallingConvention = CallingConvention.Cdecl)]
-		private static extern int INTERNAL_Vulkan_LoadLibrary(
+        private static extern int INTERNAL_Vulkan_LoadLibrary(
 			byte[] path
 		);
-		public static int Vulkan_LoadLibrary(string path)
-		{
-			return INTERNAL_Vulkan_LoadLibrary(
+
+        [SdlAvailable("2.0.6")]
+		public static int Vulkan_LoadLibrary(string path) {
+			
+            // This is a thought. Perhaps there is another way to handle this?
+			// I'm not really great with Attribute handling.
+			// @Blizzardo1
+
+            var sdl = (SdlAvailableAttribute)MethodBase.GetCurrentMethod()
+                .GetCustomAttributes(typeof(SdlAvailableAttribute), false).FirstOrDefault();
+            if (sdl != null && !sdl.Equals()) return -1;
+
+            return INTERNAL_Vulkan_LoadLibrary(
 				UTF8_ToNative(path)
 			);
 		}
@@ -65,7 +77,8 @@ namespace SDL2
 		/// Only available in 2.0.6
 		/// </summary>
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint="SDL_Vulkan_GetVkGetInstanceProcAddr")]
-		public static extern IntPtr Vulkan_GetVkGetInstanceProcAddr();
+        
+		public static extern IntPtr Vulkan_GetVkGetInstanceProcAddress();
 
 		/* Only available in 2.0.6 */
 		/// <summary>

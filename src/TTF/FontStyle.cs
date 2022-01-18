@@ -39,6 +39,6 @@ namespace SDL2.TTF
         Bold = 0x01,
         Italic = 0x02,
         Underline = 0x04,
-        Strikethrough = 0x08
+        StrikeThrough = 0x08
     }
 }

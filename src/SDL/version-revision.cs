@@ -29,6 +29,10 @@
 
 #region Using Statements
 using System;
+using System.ComponentModel;
+using System.Data.Common;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 #endregion
 namespace SDL2
@@ -41,6 +45,44 @@ namespace SDL2
         public byte Major;
         public byte Minor;
         public byte Patch;
+
+        public Version(byte major, byte minor, byte patch) {
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+        }
+
+        public Version(string version) {
+            string[] verStr = version.Split('.');
+            if (verStr.Length < 3)
+                throw new ArgumentException("Version length is inappropriate. The format is major.minor.patch (2.0.18).");
+            byte.TryParse(verStr[ 0 ], out byte major);
+            byte.TryParse(verStr[ 1 ], out byte minor);
+            byte.TryParse(verStr[ 2 ], out byte patch);
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+        }
+
+        public static bool operator ==(Version a, Version b) =>
+            a.Major == b.Major && a.Minor == b.Minor && a.Patch == b.Patch;
+
+        public static bool operator !=(Version a, Version b) => !( a == b );
+
+        public static bool operator >=(Version a, Version b) =>
+            a.Major >= b.Major && a.Major >= b.Minor && a.Patch >= b.Patch;
+
+        public static bool operator <=(Version a, Version b) => 
+            a.Major <= b.Major && a.Major <= b.Minor && a.Patch <= b.Patch;
+
+        #region Overrides of ValueType
+
+        /// <inheritdoc />
+        public override string ToString() {
+            return $"{Major}.{Minor}.{Patch}";
+        }
+
+        #endregion
     }
     public static partial class SDL
     {
