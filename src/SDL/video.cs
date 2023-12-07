@@ -87,24 +87,90 @@ namespace SDL2
 
     public enum WindowEventID : byte
     {
+        /// <summary>
+        /// Never used
+        /// </summary>
         None,
+        /// <summary>
+        /// Window has been shown
+        /// </summary>
         Shown,
+        /// <summary>
+        /// Window has been hidden
+        /// </summary>
         Hidden,
+        /// <summary>
+        /// Window has been exposed and should be redrawn
+        /// </summary>
         Exposed,
+        /// <summary>
+        /// Window has been moved to data1, data2
+        /// </summary>
         Moved,
+        /// <summary>
+        /// Window has been resized to data1xdata2.
+        /// This event is always preceded by WindowEventSizeChanged
+        /// </summary>
         Resized,
+        /// <summary>
+        /// The window size has changed, either as a result of an API call or through the system or user changing the window size.
+        /// This event is followed by WindowEventResized if the size was changed by an external event, i.e. the user or the window manager.
+        /// </summary>
         SizeChanged,
+        /// <summary>
+        /// Window has been minimized
+        /// </summary>
         Minimized,
+        /// <summary>
+        /// Window has been maximized
+        /// </summary>
         Maximized,
+        /// <summary>
+        /// Window has been restored to normal size and position
+        /// </summary>
         Restored,
+        /// <summary>
+        /// Window has gained mouse focus
+        /// </summary>
         Enter,
+        /// <summary>
+        /// Window has lost mouse focus
+        /// </summary>
         Leave,
+        /// <summary>
+        /// Window has gained keyboard focus
+        /// </summary>
         FocusGained,
+        /// <summary>
+        /// Window has lost keyboard focus
+        /// </summary>
         FocusLost,
+        /// <summary>
+        /// The window manager requests that the window be closed
+        /// </summary>
         Close,
         /* Available in 2.0.5 or higher */
+        /// <summary>
+        /// Window is being offered a focus (should SetWindowInputFocus() on itself or a subwindow, or ignore
+        /// </summary>
+        /// <remarks>Available in 2.0.5 or higher</remarks>
         TakeFocus,
-        HitTest
+        /// <summary>
+        /// Window had a hit test that wasn't HitTestNormal
+        /// </summary>
+        /// <remarks>Available in 2.0.5 or higher</remarks>
+        HitTest,
+        /* Available in 2.1.8 or higher */
+        /// <summary>
+        /// The ICC profile of the window's display has changed
+        /// </summary>
+        /// <remarks>Available in 2.1.8 or higher</remarks>
+        ICCProfileChanged,
+        /// <summary>
+        /// The window has been moved to display data1
+        /// </summary>
+        /// <remarks>Available in 2.1.8 or higher</remarks>
+        DisplayChanged,
     }
 
     public enum DisplayEventID : byte
