@@ -137,7 +137,7 @@ namespace SDL2
 			version.Patch = PatchLevel;
 		}
 
-		[DllImport(nativeLibName, EntryPoint = "MIX_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(nativeLibName, EntryPoint = "Mix_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr INTERNAL_MIX_Linked_Version();
 		public static Version MIX_Linked_Version()
 		{
