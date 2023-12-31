@@ -419,6 +419,20 @@ namespace SDL2.TTF
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontStyle")]
         public static extern FontStyle GetFontStyle(Font font);
 
+
+        /// <summary>
+        /// Set a font's current style.
+        /// </summary>
+        /// <param name="font">the font to set a new style on.</param>
+        /// <param name="style">the new style values to set, OR'd together.</param>
+        /// <remarks>
+        /// Setting the style clears already-generated glyphs, if any, from the cache.
+        /// 
+        /// The font styles are a set of bit flags, OR'd together:
+        /// 
+        /// ['[`TTF_STYLE_NORMAL`](TTF_STYLE_NORMAL) (is zero)', '[`TTF_STYLE_BOLD`](TTF_STYLE_BOLD)', '[`TTF_STYLE_ITALIC`](TTF_STYLE_ITALIC)', '[`TTF_STYLE_UNDERLINE`](TTF_STYLE_UNDERLINE)', '[`TTF_STYLE_STRIKETHROUGH`](TTF_STYLE_STRIKETHROUGH)']
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontStyle")]
         public static extern void SetFontStyle(Font font, FontStyle style);
 
@@ -438,6 +452,15 @@ namespace SDL2.TTF
         public static extern int GetFontOutline(Font font);
 
 
+        /// <summary>
+        /// Set a font's current outline.
+        /// </summary>
+        /// <param name="font">the font to set a new outline on.</param>
+        /// <param name="outline">positive outline value, 0 to default.</param>
+        /// <remarks>
+        /// 
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontOutline")]
         public static extern void SetFontOutline(Font font, int outline);
 
@@ -474,6 +497,19 @@ namespace SDL2.TTF
         public static extern FontHinting GetFontHinting(Font font);
 
 
+        /// <summary>
+        /// Set a font's current hinter setting.
+        /// </summary>
+        /// <param name="font">the font to set a new hinter setting on.</param>
+        /// <param name="hinting">the new hinter setting.</param>
+        /// <remarks>
+        /// Setting it clears already-generated glyphs, if any, from the cache.
+        /// 
+        /// The hinter setting is a single value:
+        /// 
+        /// ['[`TTF_HINTING_NORMAL`](TTF_HINTING_NORMAL)', '[`TTF_HINTING_LIGHT`](TTF_HINTING_LIGHT)', '[`TTF_HINTING_MONO`](TTF_HINTING_MONO)', '[`TTF_HINTING_NONE`](TTF_HINTING_NONE)', '[`TTF_HINTING_LIGHT_SUBPIXEL`](TTF_HINTING_LIGHT_SUBPIXEL) (available in\nSDL_ttf 2.0.18 and later)']
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontHinting")]
         public static extern void SetFontHinting(Font font, FontHinting hinting);
 
@@ -551,6 +587,18 @@ namespace SDL2.TTF
         public static extern bool GetFontKerning(Font font);
 
 
+        /// <summary>
+        /// Set if kerning is allowed for a font.
+        /// </summary>
+        /// <param name="font">the font to set kerning on.</param>
+        /// <param name="allowed">nonzero to allow kerning, zero to disallow.</param>
+        /// <remarks>
+        /// Newly-opened fonts default to allowing kerning. This is generally a good
+        /// policy unless you have a strong reason to disable it, as it tends to
+        /// produce better rendering (with kerning disabled, some fonts might render
+        /// the word `kerning` as something that looks like `keming` for example).
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontKerning")]
         public static extern void SetFontKerning(Font font, bool allowed);
 
@@ -760,6 +808,28 @@ namespace SDL2.TTF
             out int advance
         );
 
+        /// <summary>
+        /// Calculate the dimensions of a rendered string of Latin1 text.
+        /// </summary>
+        /// <param name="font">the font to query.</param>
+        /// <param name="text">text to calculate, in Latin1 encoding.</param>
+        /// <param name="w">will be filled with width, in pixels, on return.</param>
+        /// <param name="h">will be filled with height, in pixels, on return.</param>
+        /// <returns>
+        /// Returns 0 if successful, -1 on error.
+        /// </returns>
+        /// <remarks>
+        /// This will report the width and height, in pixels, of the space that the
+        /// specified string will take to fully render.
+        /// 
+        /// This does not need to render the string to do this calculation.
+        /// 
+        /// You almost certainly want TTF_SizeUTF8() unless you're sure
+        /// you have a 1-byte Latin1 encoding. US ASCII characters will work with
+        /// either function, but most other Unicode characters packed into a `const
+        /// char *` will need UTF-8.
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
         public static extern int SizeText(
             Font font,
@@ -777,7 +847,26 @@ namespace SDL2.TTF
             out int w,
             out int h
         );
-        public static int SizeUTF8(
+
+
+        /// <summary>
+        /// Calculate the dimensions of a rendered string of UTF-8 text.
+        /// </summary>
+        /// <param name="font">the font to query.</param>
+        /// <param name="text">text to calculate, in UTF8 encoding.</param>
+        /// <param name="w">will be filled with width, in pixels, on return.</param>
+        /// <param name="h">will be filled with height, in pixels, on return.</param>
+        /// <returns>
+        /// Returns 0 if successful, -1 on error.
+        /// </returns>
+        /// <remarks>
+        /// This will report the width and height, in pixels, of the space that the
+        /// specified string will take to fully render.
+        /// 
+        /// This does not need to render the string to do this calculation.
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
+        public static int SizeUtf8(
             Font font,
             string text,
             out int w,
@@ -793,8 +882,30 @@ namespace SDL2.TTF
         }
 
 
+        /// <summary>
+        /// Calculate the dimensions of a rendered string of UCS-2 text.
+        /// </summary>
+        /// <param name="font">the font to query.</param>
+        /// <param name="text">text to calculate, in UCS2 encoding.</param>
+        /// <param name="w">will be filled with width, in pixels, on return.</param>
+        /// <param name="h">will be filled with height, in pixels, on return.</param>
+        /// <returns>
+        /// Returns 0 if successful, -1 on error.
+        /// </returns>
+        /// <remarks>
+        /// This will report the width and height, in pixels, of the space that the
+        /// specified string will take to fully render.
+        /// 
+        /// This does not need to render the string to do this calculation.
+        /// 
+        /// Please note that this function is named "Unicode" but currently expects
+        /// UCS-2 encoding (16 bits per codepoint). This does not give you access to
+        /// large Unicode values, such as emoji glyphs. These codepoints are accessible
+        /// through the UTF-8 version of this function.
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
-        public static extern int SizeUNICODE(
+        public static extern int SizeUnicode(
             Font font,
             [In] [MarshalAs(UnmanagedType.LPWStr)]
                 string text,
@@ -1333,7 +1444,7 @@ namespace SDL2.TTF
         /// If wrapLength is 0, this function will only wrap on newline characters.
         /// 
         /// You can render at other quality levels with
-        /// TTF_RenderUTF8_Solid_Wrapped,
+        /// INTERNAL_TTF_RenderUTF8_Solid_Wrapped,
         /// TTF_RenderUTF8_Shaded_Wrapped, and
         /// TTF_RenderUTF8_LCD_Wrapped.
         /// This function is available since SDL_ttf 2.0.18.
@@ -1479,10 +1590,39 @@ namespace SDL2.TTF
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_Quit")]
         public static extern void Quit();
 
+        /// <summary>
+        /// Check if SDL_ttf is initialized.
+        /// </summary>
+        /// <returns>
+        /// Returns the current number of initialization calls, that need to eventually
+        /// be paired with this many calls to TTF_Quit().
+        /// </returns>
+        /// <remarks>
+        /// This reports the number of times the library has been initialized by a call
+        /// to TTF_Init(), without a paired deinitialization request from
+        /// TTF_Quit().
+        /// 
+        /// In short: if it's greater than zero, the library is currently initialized
+        /// and ready to work. If zero, it is not initialized.
+        /// 
+        /// Despite the return value being a signed integer, this function should not
+        /// return a negative number.
+        /// This function is available since SDL_ttf 2.0.12.
+        /// </remarks>
+
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_WasInit")]
         public static extern int WasInitialized();
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="font"></param>
+        /// <param name="previousIndex"></param>
+        /// <param name="index"></param>
+        /// <remarks>
+        /// This is undocumented in the SDL Documentation. Please provide Summary and Parameter descriptions.
+        /// </remarks>
+        /// <returns></returns>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetFontKerningSize")]
         public static extern int GetFontKerningSize(
             Font font,
@@ -1894,7 +2034,7 @@ namespace SDL2.TTF
         /// If wrapLength is 0, this function will only wrap on newline characters.
         /// 
         /// You almost certainly want
-        /// TTF_RenderUTF8_Solid_Wrapped() unless
+        /// INTERNAL_TTF_RenderUTF8_Solid_Wrapped() unless
         /// you're sure you have a 1-byte Latin1 encoding. US ASCII characters will
         /// work with either function, but most other Unicode characters packed into a
         /// `const char *` will need UTF-8.
@@ -2137,7 +2277,7 @@ namespace SDL2.TTF
         /// If wrapLength is 0, this function will only wrap on newline characters.
         /// 
         /// You can render at other quality levels with
-        /// TTF_RenderUTF8_Solid_Wrapped,
+        /// INTERNAL_TTF_RenderUTF8_Solid_Wrapped,
         /// TTF_RenderUTF8_Shaded_Wrapped, and
         /// TTF_RenderUTF8_Blended_Wrapped.
         /// This function is available since SDL_ttf 2.20.0.
@@ -2145,6 +2285,209 @@ namespace SDL2.TTF
         public static nint RenderUtf8LcdWrapped(Font font, string text, Color fg, Color bg, uint wrapLength) {
             return INTERNAL_TTF_RenderUTF8_LCD_Wrapped(font, SDL.UTF8_ToNative(text), fg, bg, wrapLength);
         }
+
+
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUTF8_Shaded_Wrapped")]
+        private static extern nint INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(Font font,
+        byte[] text, Color fg, Color bg, uint wrapLength);
+
+        /// <summary>
+        /// Render word-wrapped UTF-8 text at high quality to a new 8-bit surface.
+        /// </summary>
+        /// <param name="font">the font to render with.</param>
+        /// <param name="text">text to render, in UTF8 encoding.</param>
+        /// <param name="fg">the foreground color for the text.</param>
+        /// <param name="bg">the background color for the text.</param>
+        /// <param name="wrapLength"></param>
+        /// <returns>
+        /// Returns a new 8-bit, palettized surface, or NULL if there was an error.
+        /// </returns>
+        /// <remarks>
+        /// This function will allocate a new 8-bit, palettized surface. The surface's
+        /// 0 pixel will be the specified background color, while other pixels have
+        /// varying degrees of the foreground color. This function returns the new
+        /// surface, or NULL if there was an error.
+        /// 
+        /// Text is wrapped to multiple lines on line endings and on word boundaries if
+        /// it extends beyond `wrapLength` in pixels.
+        /// 
+        /// If wrapLength is 0, this function will only wrap on newline characters.
+        /// 
+        /// You can render at other quality levels with
+        /// INTERNAL_TTF_RenderUTF8_Solid_Wrapped,
+        /// TTF_RenderUTF8_Blended_Wrapped, and
+        /// TTF_RenderUTF8_LCD_Wrapped.
+        /// This function is available since SDL_ttf 2.0.18.
+        /// </remarks>
+        public static nint RenderUtf8ShadedWrapped(Font font,
+            string text, Color fg, Color bg, uint wrapLength) {
+            return INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(font, SDL.UTF8_ToNative(text), fg, bg, wrapLength);
+        }
+
+
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "INTERNAL_TTF_RenderUTF8_Solid_Wrapped")]
+        private static extern nint INTERNAL_TTF_RenderUTF8_Solid_Wrapped(Font font,
+        byte[] text, Color fg, uint wrapLength);
+
+
+        /// <summary>
+        /// Render word-wrapped UTF-8 text at fast quality to a new 8-bit surface.
+        /// </summary>
+        /// <param name="font">the font to render with.</param>
+        /// <param name="text">text to render, in UTF8 encoding.</param>
+        /// <param name="fg">the foreground color for the text.</param>
+        /// <param name="wrapLength"></param>
+        /// <returns>
+        /// Returns a new 8-bit, palettized surface, or NULL if there was an error.
+        /// </returns>
+        /// <remarks>
+        /// This function will allocate a new 8-bit, palettized surface. The surface's
+        /// 0 pixel will be the colorkey, giving a transparent background. The 1 pixel
+        /// will be set to the text color.
+        /// 
+        /// Text is wrapped to multiple lines on line endings and on word boundaries if
+        /// it extends beyond `wrapLength` in pixels.
+        /// 
+        /// If wrapLength is 0, this function will only wrap on newline characters.
+        /// 
+        /// You can render at other quality levels with
+        /// TTF_RenderUTF8_Shaded_Wrapped,
+        /// TTF_RenderUTF8_Blended_Wrapped, and
+        /// TTF_RenderUTF8_LCD_Wrapped.
+        /// This function is available since SDL_ttf 2.0.18.
+        /// </remarks>
+        public static nint RenderUtf8SolidWrapped(Font font, string text, Color fg, uint wrapLength) {
+            return INTERNAL_TTF_RenderUTF8_Solid_Wrapped(font, SDL.UTF8_ToNative(text), fg, wrapLength);
+        }
+
+
+        /// <summary>
+        /// Set a global direction to be used for text shaping.
+        /// </summary>
+        /// <param name="direction">an hb_direction_t value.</param>
+        /// <returns>
+        /// Returns 0, or -1 if SDL_ttf is not compiled with HarfBuzz support.
+        /// </returns>
+        /// <remarks>
+        /// 
+        /// This function is available since SDL_ttf 2.0.18.
+        /// </remarks>
+        [Obsolete("This function is now deprecated as of SDL 2.20.0. Please use SetFontDirection(Font, FontDirection);")]
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetDirection")]
+        public static extern int SetDirection(int direction); /* hb_direction_t */
+
+
+
+        /* File \SDL2_ttf\TTF_SetFontDirection.md */
+        /// <summary>
+        /// Set direction to be used for text shaping by a font.
+        /// </summary>
+        /// <param name="font">the font to specify a direction for.</param>
+        /// <param name="direction">the new direction for text to flow.</param>
+        /// <returns>
+        /// Returns 0 on success, or -1 on error.
+        /// </returns>
+        /// <remarks>
+        /// Any value supplied here will override the global direction set with the
+        /// deprecated TTF_SetDirection().
+        /// 
+        /// Possible direction values are:
+        /// 
+        /// ['[`TTF_DIRECTION_LTR`](TTF_DIRECTION_LTR) (Left to Right)', '[`TTF_DIRECTION_RTL`](TTF_DIRECTION_RTL) (Right to Left)', '[`TTF_DIRECTION_TTB`](TTF_DIRECTION_TTB) (Top to Bottom)', '[`TTF_DIRECTION_BTT`](TTF_DIRECTION_BTT) (Bottom to Top)']
+        /// 
+        /// If SDL_ttf was not built with HarfBuzz support, this function returns -1.
+        /// This function is available since SDL_ttf 2.20.0.
+        /// </remarks>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontDirection")]
+        public static extern int SetFontDirection(Font font, FontDirection direction);
+
+        /// <summary>
+        /// Set script to be used for text shaping by a font.
+        /// </summary>
+        /// <param name="font">the font to specify a direction for.</param>
+        /// <param name="script">nullterminated string of exactly 4 characters.</param>
+        /// <returns>
+        /// Returns 0 on success, or -1 on error.
+        /// </returns>
+        /// <remarks>
+        /// Any value supplied here will override the global script set with the
+        /// deprecated TTF_SetScript().
+        /// 
+        /// The supplied script value must be a null-terminated string of exactly four
+        /// characters.
+        /// 
+        /// If SDL_ttf was not built with HarfBuzz support, this function returns -1.
+        /// This function is available since SDL_ttf 2.20.0.
+        /// </remarks>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontScriptName")]
+        private static extern int INTERNAL_TTF_SetFontScriptName(Font font, byte[] script);
+
+        public static int SetFontScriptName(Font font, string script) {
+            return INTERNAL_TTF_SetFontScriptName(font, SDL.UTF8_ToNative(script));
+        }
+
+        /// <summary>
+        /// Set a font's size dynamically.
+        /// </summary>
+        /// <param name="font">the font to resize.</param>
+        /// <param name="ptSize">the new point size.</param>
+        /// <returns>
+        /// Returns 0 if successful, -1 on error
+        /// </returns>
+        /// <remarks>
+        /// This clears already-generated glyphs, if any, from the cache.
+        /// This function is available since SDL_ttf 2.0.18.
+        /// </remarks>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontSize")]
+        public static extern int SetFontSize(Font font, int ptSize);
+
+
+
+        /* File \SDL2_ttf\TTF_SetFontSizeDPI.md */
+        /// <summary>
+        /// Set font size dynamically with target resolutions (in DPI).
+        /// </summary>
+        /// <param name="font">the font to resize.</param>
+        /// <param name="ptSize">the new point size.</param>
+        /// <param name="horizontalDpi">the target horizontal DPI.</param>
+        /// <param name="verticalDpi">the target vertical DPI.</param>
+        /// <returns>
+        /// Returns 0 if successful, -1 on error.
+        /// </returns>
+        /// <remarks>
+        /// This clears already-generated glyphs, if any, from the cache.
+        /// This function is available since SDL_ttf 2.0.18.
+        /// </remarks>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontSizeDPI")]
+        public static extern int SetFontSizeDpi(Font font, int ptSize, uint horizontalDpi, uint verticalDpi);
+
+        /// <summary>
+        /// Set a font's current wrap alignment option.
+        /// </summary>
+        /// <param name="font">the font to set a new wrap alignment option on.</param>
+        /// <param name="align">the new wrap alignment option.</param>
+        /// <remarks>
+        /// The wrap alignment option can be one of the following:
+        /// 
+        /// ['[`TTF_WRAPPED_ALIGN_LEFT`](TTF_WRAPPED_ALIGN_LEFT)', '[`TTF_WRAPPED_ALIGN_CENTER`](TTF_WRAPPED_ALIGN_CENTER)', '[`TTF_WRAPPED_ALIGN_RIGHT`](TTF_WRAPPED_ALIGN_RIGHT)']
+        /// This function is available since SDL_ttf 2.20.0.
+        /// </remarks>
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontWrappedAlign")]
+        public static extern void SetFontWrappedAlign(Font font, FontWrappedAlign align);
+
+        /// <summary>
+        /// Set a global script to be used for text shaping.
+        /// </summary>
+        /// <returns>
+        /// Returns 0, or -1 if SDL_ttf is not compiled with HarfBuzz support.
+        /// </returns>
+        /// <remarks>
+        /// 
+        /// This function is available since SDL_ttf 2.0.18.
+        /// </remarks>
+        [Obsolete("This function is now deprecated as of SDL 2.20.0. Please use SetFontScriptName(Font, string);")]
+        [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetScript")]
+        public static extern int SetScript(int script); /* hb_script_t */
 
         #endregion
     }
