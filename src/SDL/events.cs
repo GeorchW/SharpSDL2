@@ -131,7 +131,7 @@ namespace SDL2
         UserEvent = 0x8000,
 
         /* The last event, used for bouding arrays. */
-        LastEvent = 0xFfff
+        LastEvent = 0xFFFF
     }
 
     /* Only available in 2.0.4 or higher */

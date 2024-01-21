@@ -9,12 +9,15 @@
 		<RootNamespace>SDL2</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Include="src/**/*.cs" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="app.config" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Textures\" />
 	</ItemGroup>
 </Project>

@@ -26,9 +26,6 @@
  */
 #endregion
 
-#region Using Statements
-#endregion
-
 namespace SDL2.TTF
 {
     public enum FontHinting
