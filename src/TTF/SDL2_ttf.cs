@@ -96,7 +96,10 @@ namespace SDL2.TTF
         /// This function is available since SDL_ttf 2.0.12.
         /// </remarks>
         [DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_ByteSwappedUNICODE")]
-        public static extern void ByteSwappedUNICODE(int swapped);
+        public static extern void ByteSwappedUnicode(int swapped);
+
+        [Obsolete("Naming convention change. Will be removed in the next major commit. Please change to ByteSwappedUnicode.")]
+        public static void ByteSwappedUNICODE(int swapped) => ByteSwappedUnicode(swapped);
 
         /// <summary>
         /// Initialize SDL_ttf.
